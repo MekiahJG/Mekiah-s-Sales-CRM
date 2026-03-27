@@ -126,6 +126,18 @@ textarea{min-height:92px;resize:vertical}
 @media print{
   body *{visibility:hidden !important}
   .print-area,.print-area *{visibility:visible !important}
+  .print-area{display:block !important;position:absolute;inset:0;background:#fff;padding:12px;color:#000;font-size:11px}
+  .print-head{margin-bottom:8px}
+  .print-head h1{margin:0;font-size:18px}
+  .print-sub{margin-top:4px;color:#444;font-size:10px}
+  .print-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 10px}
+  .print-item{padding:3px 0;border-bottom:1px solid #ddd}
+  .print-label{font-size:9px;font-weight:900;text-transform:uppercase;color:#444}
+  .print-value{margin-top:2px;font-size:11px;white-space:pre-wrap}
+  .print-waiver{margin-top:10px;font-size:9px;line-height:1.4}
+  .print-signature{margin-top:14px;max-width:240px;border-top:1px solid #000;padding-top:4px;font-size:10px}
+}
+  .print-area,.print-area *{visibility:visible !important}
   .print-area{display:block !important;position:absolute;inset:0;background:#fff;padding:22px;color:#000}
   .print-head{margin-bottom:14px}
   .print-head h1{margin:0;font-size:24px}
