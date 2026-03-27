@@ -7,7 +7,7 @@
 <style>
 :root{
   --bg:#f5f7fb;
-  --card:rgba(255,255,255,0.88);
+  --card:rgba(255,255,255,0.9);
   --card-solid:#ffffff;
   --line:#e6eaf2;
   --text:#0f172a;
@@ -37,7 +37,7 @@ body.modal-open{overflow:hidden}
 .nav button:hover{background:#f8fafc;border-color:#e5e7eb}
 .nav button.active{background:#111827;color:#fff;box-shadow:var(--shadow)}
 .side-note{margin-top:18px;padding:16px;border-radius:18px;background:linear-gradient(135deg,#111827,#1f2937);color:#fff}
-.side-note .tiny{opacity:.8}
+.side-note .tiny{opacity:.82}
 .main{padding:28px}
 .topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;margin-bottom:22px}
 .title{margin:0;font-size:34px;font-weight:900;letter-spacing:-.05em}
@@ -60,14 +60,14 @@ body.modal-open{overflow:hidden}
 .toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 .input, select, textarea{width:100%;border:1px solid #d7dce5;background:#fff;border-radius:14px;padding:12px 13px;outline:none;transition:.18s ease}
 .input:focus, select:focus, textarea:focus{border-color:#3b82f6;box-shadow:0 0 0 4px rgba(59,130,246,.12)}
-textarea{min-height:100px;resize:vertical}
+textarea{min-height:92px;resize:vertical}
 .search-wrap{display:flex;gap:10px;flex-wrap:wrap}
 .label{display:block;margin-bottom:7px;font-size:12px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#475467}
 .form-grid{display:grid;gap:14px}
 .form-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 .form-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
 .form-grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
-.form-section{margin-top:22px;padding-top:18px;border-top:1px solid #edf1f5}
+.form-section{margin-top:20px;padding-top:16px;border-top:1px solid #edf1f5}
 .form-section:first-of-type{margin-top:0;padding-top:0;border-top:none}
 .section-caption{color:var(--muted);font-size:13px;margin:-8px 0 14px}
 .lead-list{display:grid;gap:12px}
@@ -107,25 +107,35 @@ textarea{min-height:100px;resize:vertical}
 .detail-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:900;color:var(--muted);margin-bottom:6px}
 .detail-value{font-size:14px;font-weight:700;line-height:1.5;word-break:break-word}
 .inline-actions{display:flex;gap:10px;flex-wrap:wrap}
-.signature-line{margin-top:28px;border-top:1px solid #111827;padding-top:8px;max-width:320px;font-size:13px;font-weight:700}
+.signature-line{margin-top:24px;border-top:1px solid #111827;padding-top:8px;max-width:320px;font-size:13px;font-weight:700}
 .waiver{font-size:12px;line-height:1.75;color:#374151;padding:14px 16px;border-radius:16px;background:#fafafa;border:1px dashed #d6dae2;margin-top:18px}
-.footer-note{margin-top:18px;color:var(--muted);font-size:12px}
-@media (max-width:1200px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.split,.profile-grid{grid-template-columns:1fr}.form-grid.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:900px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto;border-right:none;border-bottom:1px solid var(--line)}.form-grid.two,.form-grid.three,.detail-grid{grid-template-columns:1fr}}
+.footer-note{margin-top:12px;color:var(--muted);font-size:12px}
+.one-page-sheet{max-width:1260px}
+.sheet-header{display:grid;grid-template-columns:2.2fr 1fr;gap:18px;align-items:start;margin-bottom:8px}
+.sheet-title{font-size:22px;font-weight:900;letter-spacing:-.04em;margin:0}
+.sheet-sub{margin-top:6px;color:var(--muted);font-size:13px;line-height:1.6}
+.sheet-badge{padding:14px 16px;border-radius:18px;background:linear-gradient(135deg,#111827,#1f2937);color:#fff;font-size:13px;line-height:1.55}
+.sheet-block{border:1px solid #edf1f5;background:rgba(255,255,255,.88);border-radius:20px;padding:16px}
+.sheet-block h4{margin:0 0 12px;font-size:15px;font-weight:900;letter-spacing:-.02em}
+.compact .input,.compact select{padding:10px 11px}
+.compact textarea{min-height:76px}
+.quick-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+@media (max-width:1280px){.quick-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.split,.profile-grid,.sheet-header{grid-template-columns:1fr}.form-grid.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto;border-right:none;border-bottom:1px solid var(--line)}.form-grid.two,.form-grid.three,.detail-grid,.quick-grid{grid-template-columns:1fr}}
 @media (max-width:640px){.main{padding:18px}.kpis,.form-grid.four{grid-template-columns:1fr}.modal-header,.modal-body{padding:18px}.lead-card{grid-template-columns:1fr}}
 @media print{
   body *{visibility:hidden !important}
   .print-area,.print-area *{visibility:visible !important}
-  .print-area{display:block !important;position:absolute;inset:0;background:#fff;padding:28px;color:#000}
-  .print-head{margin-bottom:16px}
-  .print-head h1{margin:0;font-size:28px}
-  .print-sub{margin-top:6px;color:#444;font-size:13px}
-  .print-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px}
-  .print-item{padding:8px 0;border-bottom:1px solid #ddd}
-  .print-label{font-size:11px;font-weight:900;text-transform:uppercase;color:#444}
-  .print-value{margin-top:5px;font-size:14px;white-space:pre-wrap}
-  .print-waiver{margin-top:20px;font-size:12px;line-height:1.7}
-  .print-signature{margin-top:36px;max-width:320px;border-top:1px solid #000;padding-top:8px;font-size:13px}
+  .print-area{display:block !important;position:absolute;inset:0;background:#fff;padding:22px;color:#000}
+  .print-head{margin-bottom:14px}
+  .print-head h1{margin:0;font-size:24px}
+  .print-sub{margin-top:6px;color:#444;font-size:12px}
+  .print-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px}
+  .print-item{padding:6px 0;border-bottom:1px solid #ddd}
+  .print-label{font-size:10px;font-weight:900;text-transform:uppercase;color:#444}
+  .print-value{margin-top:4px;font-size:13px;white-space:pre-wrap}
+  .print-waiver{margin-top:16px;font-size:11px;line-height:1.6}
+  .print-signature{margin-top:24px;max-width:280px;border-top:1px solid #000;padding-top:6px;font-size:12px}
 }
 </style>
 </head>
@@ -133,16 +143,17 @@ textarea{min-height:100px;resize:vertical}
 <div class="app">
   <aside class="sidebar">
     <div class="brand">Sales CRM</div>
-    <div class="brand-sub">Luxury pipeline manager with guest sheet intake, full lead profiles, conversion analytics, review tracking, and follow-up reminders.</div>
+    <div class="brand-sub">Luxury pipeline manager with refined guest sheet intake, separate quick lead entry, full lead profiles, analytics, and follow-up reminders.</div>
     <div class="nav">
       <button class="active" data-tab="dashboard">Dashboard</button>
       <button data-tab="guest">Guest Sheet</button>
+      <button data-tab="addLead">Add Lead</button>
       <button data-tab="leads">Leads</button>
       <button data-tab="tasks">Follow-Ups</button>
     </div>
     <div class="side-note">
       <div style="font-weight:900;margin-bottom:6px;">Built to sell faster</div>
-      <div class="tiny">Take the guest sheet once, turn it into a lead instantly, track status, and stay on top of your pipeline.</div>
+      <div class="tiny">Use the guest sheet when the customer is in front of you. Use Add Lead when you just need to get someone into the CRM fast.</div>
     </div>
   </aside>
 
@@ -150,7 +161,7 @@ textarea{min-height:100px;resize:vertical}
     <div class="topbar">
       <div>
         <h1 class="title" id="pageTitle">Dashboard</h1>
-        <div class="subtitle" id="pageSubtitle">See your numbers, lead sources, review count, and follow-up pressure in one place.</div>
+        <div class="subtitle" id="pageSubtitle">See your numbers, lead sources, review count, gross tracking, and follow-up pressure in one place.</div>
       </div>
       <div class="actions">
         <button class="btn secondary" id="exportBtn">Export Data</button>
@@ -164,15 +175,13 @@ textarea{min-height:100px;resize:vertical}
         <div class="kpi"><div class="kpi-label">Total Leads</div><div class="kpi-value" id="kpiTotal">0</div><div class="kpi-sub">All leads currently in your pipeline</div></div>
         <div class="kpi"><div class="kpi-label">Sold</div><div class="kpi-value" id="kpiSold">0</div><div class="kpi-sub">Closed and delivered customers</div></div>
         <div class="kpi"><div class="kpi-label">Close Rate</div><div class="kpi-value" id="kpiCloseRate">0%</div><div class="kpi-sub">Sold ÷ total leads</div></div>
-        <div class="kpi"><div class="kpi-label">Google Reviews</div><div class="kpi-value" id="kpiReviews">0</div><div class="kpi-sub">Leads marked as review received</div></div>
+        <div class="kpi"><div class="kpi-label">Tracked Gross</div><div class="kpi-value" id="kpiGross">$0</div><div class="kpi-sub">Sum of gross entered on leads</div></div>
       </div>
 
       <div class="split">
         <div class="card">
           <div class="toolbar">
-            <div>
-              <h3 class="section-title">Recent Leads</h3>
-            </div>
+            <div><h3 class="section-title">Recent Leads</h3></div>
             <button class="btn secondary" onclick="setTab('leads')">Open Lead Manager</button>
           </div>
           <div class="lead-list" id="recentLeads"></div>
@@ -191,99 +200,130 @@ textarea{min-height:100px;resize:vertical}
     </section>
 
     <section id="guestTab" class="hidden">
-      <div class="card">
-        <h3 class="section-title">Guest Sheet / Needs Assessment</h3>
-        <div class="section-caption">This intake becomes a lead automatically when saved. It also prints as a clean customer worksheet.</div>
+      <div class="card one-page-sheet compact">
+        <div class="sheet-header">
+          <div>
+            <h3 class="sheet-title">Guest Sheet / Needs Assessment</h3>
+            <div class="sheet-sub">A cleaner one-page desk sheet. It keeps the important questions, looks more intentional, prints better, and still creates a lead automatically.</div>
+          </div>
+          <div class="sheet-badge">Refined for quick in-store use. Better visual balance. Less clutter. Keeps your disclaimer and signature section.</div>
+        </div>
+
         <form id="guestForm">
-          <div class="form-section">
-            <div class="form-grid four">
+          <div class="sheet-block">
+            <h4>Deal Setup</h4>
+            <div class="quick-grid">
               <div><label class="label">Salesperson</label><input class="input" name="salesperson" placeholder="Your name" /></div>
               <div><label class="label">Date</label><input class="input" name="date" type="date" /></div>
+              <div><label class="label">Customer Name</label><input class="input" name="customerName" placeholder="Full name" /></div>
+              <div><label class="label">Deal Number</label><input class="input" name="dealNumber" /></div>
+              <div><label class="label">Stock #</label><input class="input" name="stockNumber" /></div>
+              <div><label class="label">VOI Type</label><select name="vehicleType"><option>SUV</option><option>Sedan</option><option>Truck</option><option>Coupe</option><option>Van</option><option>Other</option></select></div>
+            </div>
+            <div class="quick-grid" style="margin-top:12px;">
+              <div><label class="label">Vehicle of Interest</label><input class="input" name="vehicleInterest" placeholder="Year, make, model" /></div>
+              <div><label class="label">Cash / Finance</label><select name="paymentType"><option>Finance</option><option>Cash</option><option>Lease</option><option>Undecided</option></select></div>
               <div><label class="label">Lead Source</label><select name="leadSource"><option>Personal Lead</option><option>Dealer Lead</option><option>Phone Up</option><option>Fresh Up</option><option>Internet Lead</option><option>Repeat Customer</option><option>Referral</option><option>Walk-In</option><option>Other</option></select></div>
-              <div><label class="label">Timeline to Buy</label><select name="timeline"><option>Today</option><option>This Week</option><option>This Month</option><option>30-60 Days</option><option>Just Shopping</option></select></div>
-            </div>
-          </div>
-
-          <div class="form-section">
-            <h4 class="section-title" style="font-size:16px;">Customer Information</h4>
-            <div class="form-grid three">
-              <div><label class="label">First Name</label><input class="input" name="firstName" required /></div>
-              <div><label class="label">Last Name</label><input class="input" name="lastName" required /></div>
-              <div><label class="label">Birthday</label><input class="input" name="birthday" type="date" /></div>
-            </div>
-            <div class="form-grid three" style="margin-top:14px;">
+              <div><label class="label">Timeline</label><select name="timeline"><option>Today</option><option>This Week</option><option>This Month</option><option>30-60 Days</option><option>Just Shopping</option></select></div>
               <div><label class="label">Phone</label><input class="input" name="phone" /></div>
-              <div><label class="label">Email</label><input class="input" name="email" type="email" /></div>
-              <div><label class="label">Address</label><input class="input" name="address" /></div>
+              <div><label class="label">Gross</label><input class="input" name="gross" placeholder="Front or total gross" /></div>
             </div>
           </div>
 
-          <div class="form-section">
-            <h4 class="section-title" style="font-size:16px;">License & Insurance</h4>
-            <div class="form-grid three">
-              <div><label class="label">Driver License Number</label><input class="input" name="driversLicense" /></div>
-              <div><label class="label">License State</label><input class="input" name="licenseState" /></div>
-              <div><label class="label">License Expiration</label><input class="input" name="licenseExpiration" type="date" /></div>
-            </div>
-            <div class="form-grid three" style="margin-top:14px;">
-              <div><label class="label">Insurance Company</label><input class="input" name="insuranceCompany" /></div>
-              <div><label class="label">Insurance Policy Number</label><input class="input" name="insurancePolicy" /></div>
-              <div><label class="label">Insurance Agent / Contact</label><input class="input" name="insuranceAgent" /></div>
-            </div>
-          </div>
+          <div class="form-section"></div>
 
-          <div class="form-section">
-            <h4 class="section-title" style="font-size:16px;">Vehicle / Deal Structure</h4>
+          <div class="sheet-block">
+            <h4>Budget & Priorities</h4>
             <div class="form-grid four">
-              <div><label class="label">Vehicle Interest</label><input class="input" name="vehicleInterest" placeholder="Year, make, model" /></div>
-              <div><label class="label">Stock Number</label><input class="input" name="stockNumber" /></div>
+              <div><label class="label">Cash Budget</label><input class="input" name="cashBudget" placeholder="OTD / cash target" /></div>
+              <div><label class="label">Finance Budget</label><input class="input" name="financeBudget" placeholder="Monthly finance target" /></div>
+              <div><label class="label">Most Important</label><select name="topPriority"><option>Monthly Payment</option><option>OTD Price</option><option>All Features</option><option>Vehicle Condition</option><option>Approval</option><option>Color / Looks</option></select></div>
               <div><label class="label">Color Preference</label><input class="input" name="colorPreference" /></div>
-              <div><label class="label">Must-Have Features</label><input class="input" name="mustHaveFeatures" placeholder="Leather, sunroof, 3rd row" /></div>
             </div>
-            <div class="form-grid four" style="margin-top:14px;">
-              <div><label class="label">Budget</label><input class="input" name="budget" placeholder="$ / month or OTD" /></div>
-              <div><label class="label">Payment Goal</label><input class="input" name="paymentGoal" /></div>
-              <div><label class="label">Cash / Finance / Lease</label><select name="paymentType"><option>Finance</option><option>Cash</option><option>Lease</option><option>Undecided</option></select></div>
-              <div><label class="label">Down Payment</label><input class="input" name="downPayment" /></div>
+            <div style="margin-top:12px;"><label class="label">Must Have</label><textarea name="mustHaveFeatures" placeholder="Key features, options, packages, colors, technology, seating, etc."></textarea></div>
+          </div>
+
+          <div class="form-section"></div>
+
+          <div class="sheet-block">
+            <h4>Trade In</h4>
+            <div class="form-grid four">
+              <div><label class="label">Year</label><input class="input" name="tradeYear" /></div>
+              <div><label class="label">Make</label><input class="input" name="tradeMake" /></div>
+              <div><label class="label">Mileage</label><input class="input" name="tradeMileage" /></div>
+              <div><label class="label">VIN</label><input class="input" name="tradeVin" /></div>
             </div>
-            <div class="form-grid four" style="margin-top:14px;">
-              <div><label class="label">Trade In</label><select name="tradeIn"><option>No</option><option>Yes</option></select></div>
-              <div><label class="label">Current Vehicle</label><input class="input" name="currentVehicle" /></div>
-              <div><label class="label">Current Payment</label><input class="input" name="currentPayment" /></div>
-              <div><label class="label">Credit Situation</label><select name="creditSituation"><option>Unknown</option><option>Good</option><option>Average</option><option>Challenged</option><option>Cash Buyer</option></select></div>
-            </div>
-            <div class="form-grid two" style="margin-top:14px;">
-              <div><label class="label">Use Case</label><input class="input" name="useCase" placeholder="Family, commute, work, first car" /></div>
-              <div><label class="label">Objection / Concern</label><input class="input" name="objection" placeholder="Payment, color, approval, shopping around" /></div>
+            <div class="form-grid four" style="margin-top:12px;">
+              <div><label class="label">Financed Through</label><input class="input" name="tradeFinancedThrough" /></div>
+              <div><label class="label">Paid Off / Balance</label><select name="tradePayoffStatus"><option>Paid Off</option><option>Has Balance</option><option>Unknown</option></select></div>
+              <div><label class="label">Per Diem</label><input class="input" name="tradePerDiem" /></div>
+              <div><label class="label">20 Day Payoff</label><input class="input" name="trade20DayPayoff" /></div>
             </div>
           </div>
 
-          <div class="form-section">
-            <h4 class="section-title" style="font-size:16px;">Follow-Up & Review</h4>
+          <div class="form-section"></div>
+
+          <div class="sheet-block">
+            <h4>Customer / Insurance</h4>
             <div class="form-grid four">
+              <div><label class="label">Driver License #</label><input class="input" name="driversLicense" /></div>
+              <div><label class="label">License Exp Date</label><input class="input" name="licenseExpiration" type="date" /></div>
+              <div><label class="label">Insurance Company</label><input class="input" name="insuranceCompany" /></div>
+              <div><label class="label">Policy Number</label><input class="input" name="insurancePolicy" /></div>
+            </div>
+            <div class="form-grid four" style="margin-top:12px;">
+              <div><label class="label">Insurance Start</label><input class="input" name="insuranceStartDate" type="date" /></div>
+              <div><label class="label">Insurance Exp</label><input class="input" name="insuranceEndDate" type="date" /></div>
               <div><label class="label">Follow-Up Date</label><input class="input" name="followUpDate" type="date" /></div>
               <div><label class="label">Follow-Up Method</label><select name="followUpMethod"><option>Call</option><option>Text</option><option>Email</option><option>In Person</option></select></div>
-              <div><label class="label">Appointment Date</label><input class="input" name="appointmentDate" type="date" /></div>
-              <div><label class="label">Google Review Received?</label><select name="googleReview"><option>No</option><option>Yes</option></select></div>
             </div>
-            <div style="margin-top:14px;"><label class="label">Notes</label><textarea name="notes" placeholder="Customer story, hot buttons, family details, urgency, objections, next step..."></textarea></div>
+            <div style="margin-top:12px;"><label class="label">Notes</label><textarea name="notes" placeholder="Quick summary, objection, next step, what matters most, or anything the manager needs to know."></textarea></div>
           </div>
 
-          <div class="form-section">
-            <h4 class="section-title" style="font-size:16px;">Demo Waiver</h4>
-            <div class="waiver">
-              Customer is responsible for all damages to the vehicle regardless of fault. and s/he is advised to contact his/her own insurance agent or broker to ensure insurance coverage
-              <br><br>
-              I hereby acknowledge that I have read and understand the preceding demo conditions, and agree to abide them
-            </div>
-            <div class="signature-line">Customer Signature</div>
-            <div class="footer-note">Print from the lead profile or print this form before saving if needed.</div>
+          <div class="waiver">
+            Customer is responsible for all damages to the vehicle regardless of fault. and s/he is advised to contact his/her own insurance agent or broker to ensure insurance coverage
+            <br><br>
+            I hereby acknowledge that I have read and understand the preceding demo conditions, and agree to abide them
           </div>
+          <div class="signature-line">Customer Signature</div>
+          <div class="footer-note">Saving this guest sheet will also create a lead with the matching info inside the CRM.</div>
 
-          <div class="inline-actions" style="margin-top:22px;">
+          <div class="inline-actions" style="margin-top:20px;">
             <button class="btn secondary" type="button" id="printCurrentBtn">Print Current Form</button>
             <button class="btn secondary" type="reset">Clear Form</button>
             <button class="btn" type="submit">Save Guest Sheet as Lead</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="addLeadTab" class="hidden">
+      <div class="card">
+        <h3 class="section-title">Add Lead</h3>
+        <div class="section-caption">Use this when you want to create a lead without filling out the full guest sheet.</div>
+        <form id="quickLeadForm">
+          <div class="form-grid four">
+            <div><label class="label">First Name</label><input class="input" name="firstName" required /></div>
+            <div><label class="label">Last Name</label><input class="input" name="lastName" required /></div>
+            <div><label class="label">Phone</label><input class="input" name="phone" /></div>
+            <div><label class="label">Lead Source</label><select name="leadSource"><option>Personal Lead</option><option>Dealer Lead</option><option>Phone Up</option><option>Fresh Up</option><option>Internet Lead</option><option>Repeat Customer</option><option>Referral</option><option>Walk-In</option><option>Other</option></select></div>
+          </div>
+          <div class="form-grid four" style="margin-top:14px;">
+            <div><label class="label">Vehicle Interest</label><input class="input" name="vehicleInterest" /></div>
+            <div><label class="label">Stock #</label><input class="input" name="stockNumber" /></div>
+            <div><label class="label">Budget</label><input class="input" name="budget" /></div>
+            <div><label class="label">Gross</label><input class="input" name="gross" /></div>
+          </div>
+          <div class="form-grid four" style="margin-top:14px;">
+            <div><label class="label">Status</label><select name="status"><option>Fresh</option><option>Working</option><option>Appointment</option><option>Sold</option><option>Lost</option></select></div>
+            <div><label class="label">Follow-Up Date</label><input class="input" name="followUpDate" type="date" /></div>
+            <div><label class="label">Salesperson</label><input class="input" name="salesperson" placeholder="Your name" /></div>
+            <div><label class="label">Date</label><input class="input" name="date" type="date" /></div>
+          </div>
+          <div style="margin-top:14px;"><label class="label">Notes</label><textarea name="notes" placeholder="Quick notes, objection, hot buttons, next step..."></textarea></div>
+          <div class="inline-actions" style="margin-top:18px;">
+            <button class="btn secondary" type="reset">Clear</button>
+            <button class="btn" type="submit">Create Lead</button>
           </div>
         </form>
       </div>
@@ -343,7 +383,7 @@ textarea{min-height:100px;resize:vertical}
 <div class="print-area" id="printArea"></div>
 
 <script>
-const STORAGE_KEY = 'luxury_sales_crm_v1';
+const STORAGE_KEY = 'luxury_sales_crm_v2';
 let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"leads":[]}');
 if(!state.leads) state = { leads: [] };
 let currentTab = 'dashboard';
@@ -352,6 +392,7 @@ let selectedLeadId = null;
 const tabs = {
   dashboard: document.getElementById('dashboardTab'),
   guest: document.getElementById('guestTab'),
+  addLead: document.getElementById('addLeadTab'),
   leads: document.getElementById('leadsTab'),
   tasks: document.getElementById('tasksTab')
 };
@@ -361,14 +402,23 @@ function escapeHtml(v){ return String(v ?? '').replaceAll('&','&amp;').replaceAl
 function fmtDate(dateStr){ if(!dateStr) return '—'; const d = new Date(dateStr); return Number.isNaN(d.getTime()) ? dateStr : d.toLocaleDateString(); }
 function todayISO(){ return new Date().toISOString().slice(0,10); }
 function getLead(id){ return state.leads.find(l => l.id === id); }
+function uid(){ return (crypto.randomUUID ? crypto.randomUUID() : String(Date.now() + Math.random())); }
 function statusClass(status){ return status === 'Sold' ? 'green' : status === 'Appointment' ? 'blue' : status === 'Lost' ? 'red' : status === 'Working' ? 'orange' : 'gray'; }
+function parseMoney(value){
+  const n = parseFloat(String(value || '').replace(/[^0-9.-]/g,''));
+  return Number.isFinite(n) ? n : 0;
+}
+function money(n){
+  return '$' + Number(n || 0).toLocaleString();
+}
 function setTab(tab){
   currentTab = tab;
   Object.entries(tabs).forEach(([key, el]) => el.classList.toggle('hidden', key !== tab));
   document.querySelectorAll('.nav button').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
   const titleMap = {
-    dashboard:['Dashboard','See your numbers, lead sources, review count, and follow-up pressure in one place.'],
-    guest:['Guest Sheet','Take a clean needs assessment and convert it to a lead automatically.'],
+    dashboard:['Dashboard','See your numbers, lead sources, review count, gross tracking, and follow-up pressure in one place.'],
+    guest:['Guest Sheet','Use the refined one-page guest sheet and convert it to a lead automatically.'],
+    addLead:['Add Lead','Create a lead quickly without using the full guest sheet.'],
     leads:['Leads','Search, filter, open, edit, print, and manage every customer.'],
     tasks:['Follow-Ups','Stay on top of overdue, due today, and upcoming customer touches.']
   };
@@ -401,16 +451,14 @@ document.getElementById('seedDemoBtn').addEventListener('click', () => {
   if(state.leads.length && !confirm('Demo data will be added to your current leads. Continue?')) return;
   const today = todayISO();
   const demo = [
-    {firstName:'Jaylen',lastName:'Carter',phone:'404-555-1901',email:'jaylen@example.com',salesperson:'Mekiah',date:today,leadSource:'Personal Lead',timeline:'Today',vehicleInterest:'2023 BMW 540i',stockNumber:'B54012',colorPreference:'Black',mustHaveFeatures:'Red interior, sunroof',budget:'$725/mo',paymentGoal:'$700/mo',paymentType:'Finance',downPayment:'$4,000',tradeIn:'Yes',currentVehicle:'2018 Charger',currentPayment:'$510/mo',creditSituation:'Good',useCase:'Daily + image car',objection:'Wants lower payment',followUpDate:today,followUpMethod:'Call',appointmentDate:today,googleReview:'No',notes:'Hot on this unit. Wants numbers fast.',driversLicense:'C1234567',licenseState:'GA',licenseExpiration:'2028-10-01',insuranceCompany:'State Farm',insurancePolicy:'SF33291',insuranceAgent:'Jordan',birthday:'1999-08-11',address:'Atlanta, GA',status:'Working',createdAt:new Date().toISOString()},
-    {firstName:'Tiana',lastName:'Brooks',phone:'678-555-2241',email:'tiana@example.com',salesperson:'Mekiah',date:today,leadSource:'Internet Lead',timeline:'This Week',vehicleInterest:'2022 Tahoe RST',stockNumber:'T22091',colorPreference:'White',mustHaveFeatures:'Captain chairs',budget:'$850/mo',paymentGoal:'$820/mo',paymentType:'Finance',downPayment:'$5,000',tradeIn:'No',currentVehicle:'2015 Altima',currentPayment:'$0',creditSituation:'Average',useCase:'Family SUV',objection:'Shopping two stores',followUpDate:today,followUpMethod:'Text',appointmentDate:'',googleReview:'Yes',notes:'Needs third row immediately.',driversLicense:'D883912',licenseState:'GA',licenseExpiration:'2027-06-20',insuranceCompany:'GEICO',insurancePolicy:'GE8821',insuranceAgent:'Alicia',birthday:'1996-05-02',address:'Lawrenceville, GA',status:'Sold',createdAt:new Date(Date.now()-86400000).toISOString()},
-    {firstName:'Marcus',lastName:'Hill',phone:'770-555-8890',email:'',salesperson:'Mekiah',date:today,leadSource:'Fresh Up',timeline:'30-60 Days',vehicleInterest:'F-150 XLT',stockNumber:'F15077',colorPreference:'Gray',mustHaveFeatures:'Crew cab',budget:'$650/mo',paymentGoal:'$620/mo',paymentType:'Lease',downPayment:'$2,500',tradeIn:'Yes',currentVehicle:'2016 Silverado',currentPayment:'$430/mo',creditSituation:'Challenged',useCase:'Work truck',objection:'Needs approval',followUpDate:new Date(Date.now()+86400000).toISOString().slice(0,10),followUpMethod:'Call',appointmentDate:'',googleReview:'No',notes:'Needs approval path and trade value.',driversLicense:'M443219',licenseState:'GA',licenseExpiration:'2026-11-18',insuranceCompany:'Progressive',insurancePolicy:'PR1100',insuranceAgent:'Kim',birthday:'1992-12-19',address:'Buford, GA',status:'Fresh',createdAt:new Date(Date.now()-172800000).toISOString()}
-  ].map(x => ({...x, id: uid()}));
+    {firstName:'Jaylen',lastName:'Carter',customerName:'Jaylen Carter',phone:'404-555-1901',salesperson:'Mekiah',date:today,leadSource:'Personal Lead',timeline:'Today',vehicleInterest:'2023 BMW 540i',stockNumber:'B54012',vehicleType:'Sedan',cashBudget:'',financeBudget:'725',topPriority:'Monthly Payment',mustHaveFeatures:'Red interior, sunroof',gross:'4200',paymentType:'Finance',followUpDate:today,followUpMethod:'Call',googleReview:'No',notes:'Hot on this unit. Wants numbers fast.',driversLicense:'C1234567',licenseExpiration:'2028-10-01',insuranceCompany:'State Farm',insurancePolicy:'SF33291',insuranceStartDate:today,insuranceEndDate:'2026-12-31',tradeYear:'2018',tradeMake:'Dodge Charger',tradeMileage:'82000',tradeVin:'1ABCD2345',tradeFinancedThrough:'Capital One',tradePayoffStatus:'Has Balance',tradePerDiem:'12.40',trade20DayPayoff:'15488',status:'Working',createdAt:new Date().toISOString()},
+    {firstName:'Tiana',lastName:'Brooks',customerName:'Tiana Brooks',phone:'678-555-2241',salesperson:'Mekiah',date:today,leadSource:'Internet Lead',timeline:'This Week',vehicleInterest:'2022 Tahoe RST',stockNumber:'T22091',vehicleType:'SUV',cashBudget:'',financeBudget:'850',topPriority:'All Features',mustHaveFeatures:'Captain chairs',gross:'6100',paymentType:'Finance',followUpDate:today,followUpMethod:'Text',googleReview:'Yes',notes:'Needs third row immediately.',driversLicense:'D883912',licenseExpiration:'2027-06-20',insuranceCompany:'GEICO',insurancePolicy:'GE8821',insuranceStartDate:today,insuranceEndDate:'2026-11-30',tradePayoffStatus:'Paid Off',status:'Sold',createdAt:new Date(Date.now()-86400000).toISOString()},
+    {firstName:'Marcus',lastName:'Hill',customerName:'Marcus Hill',phone:'770-555-8890',salesperson:'Mekiah',date:today,leadSource:'Fresh Up',timeline:'30-60 Days',vehicleInterest:'F-150 XLT',stockNumber:'F15077',vehicleType:'Truck',cashBudget:'',financeBudget:'650',topPriority:'Approval',mustHaveFeatures:'Crew cab',gross:'0',paymentType:'Finance',followUpDate:new Date(Date.now()+86400000).toISOString().slice(0,10),followUpMethod:'Call',googleReview:'No',notes:'Needs approval path and trade value.',driversLicense:'M443219',licenseExpiration:'2026-11-18',insuranceCompany:'Progressive',insurancePolicy:'PR1100',insuranceStartDate:today,insuranceEndDate:'2026-09-30',tradeYear:'2016',tradeMake:'Chevy Silverado',tradeMileage:'131000',tradeVin:'2ZXCV5678',tradeFinancedThrough:'GM Financial',tradePayoffStatus:'Has Balance',tradePerDiem:'8.77',trade20DayPayoff:'11881',status:'Fresh',createdAt:new Date(Date.now()-172800000).toISOString()}
+  ].map(x => ({...x, id: uid(), budget:x.financeBudget || x.cashBudget || ''}));
   state.leads = [...demo, ...state.leads];
   persist();
   renderAll();
 });
-
-function uid(){ return (crypto.randomUUID ? crypto.randomUUID() : String(Date.now() + Math.random())); }
 
 function leadCounts(){
   const counts = { Fresh:0, Working:0, Appointment:0, Sold:0, Lost:0 };
@@ -435,11 +483,8 @@ function filteredLeads(){
   const status = document.getElementById('statusFilter')?.value || '';
   const source = document.getElementById('sourceFilter')?.value || '';
   return [...state.leads].filter(l => {
-    const hay = [l.firstName,l.lastName,l.phone,l.email,l.stockNumber,l.vehicleInterest,l.leadSource,l.colorPreference,l.budget,l.salesperson].join(' ').toLowerCase();
-    const hitQ = !q || hay.includes(q);
-    const hitStatus = !status || (l.status === status);
-    const hitSource = !source || (l.leadSource === source);
-    return hitQ && hitStatus && hitSource;
+    const hay = [l.firstName,l.lastName,l.customerName,l.phone,l.stockNumber,l.vehicleInterest,l.leadSource,l.vehicleType,l.budget,l.salesperson,l.dealNumber].join(' ').toLowerCase();
+    return (!q || hay.includes(q)) && (!status || l.status === status) && (!source || l.leadSource === source);
   }).sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
 }
 
@@ -447,21 +492,21 @@ function renderDashboard(){
   const counts = leadCounts();
   const total = state.leads.length;
   const sold = counts.Sold || 0;
-  const reviews = state.leads.filter(l => l.googleReview === 'Yes').length;
+  const gross = state.leads.reduce((sum,l) => sum + parseMoney(l.gross), 0);
   document.getElementById('kpiTotal').textContent = total;
   document.getElementById('kpiSold').textContent = sold;
   document.getElementById('kpiCloseRate').textContent = total ? Math.round((sold/total)*100) + '%' : '0%';
-  document.getElementById('kpiReviews').textContent = reviews;
+  document.getElementById('kpiGross').textContent = money(gross);
 
   const recent = [...state.leads].sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0,5);
   document.getElementById('recentLeads').innerHTML = recent.length ? recent.map(l => `
     <div class="lead-card" onclick="openLead('${l.id}')">
       <div>
-        <div class="lead-name">${escapeHtml(l.firstName)} ${escapeHtml(l.lastName)}</div>
-        <div class="lead-meta">${escapeHtml(l.phone || 'No phone')} • ${escapeHtml(l.vehicleInterest || 'No vehicle selected')}<br>Budget: ${escapeHtml(l.budget || '—')} • Stock: ${escapeHtml(l.stockNumber || '—')} • ${escapeHtml(l.leadSource || '—')}</div>
+        <div class="lead-name">${escapeHtml(l.customerName || [l.firstName,l.lastName].filter(Boolean).join(' '))}</div>
+        <div class="lead-meta">${escapeHtml(l.phone || 'No phone')} • ${escapeHtml(l.vehicleInterest || 'No vehicle selected')}<br>Budget: ${escapeHtml(l.budget || '—')} • Stock: ${escapeHtml(l.stockNumber || '—')} • Gross: ${escapeHtml(l.gross || '—')}</div>
         <div class="pills">
           <span class="pill ${statusClass(l.status || 'Fresh')}">${escapeHtml(l.status || 'Fresh')}</span>
-          <span class="pill gray">${escapeHtml(l.timeline || '—')}</span>
+          <span class="pill gray">${escapeHtml(l.leadSource || '—')}</span>
           <span class="pill ${l.googleReview === 'Yes' ? 'green' : 'gray'}">Review: ${escapeHtml(l.googleReview || 'No')}</span>
         </div>
       </div>
@@ -470,20 +515,14 @@ function renderDashboard(){
 
   const pipeline = leadCounts();
   document.getElementById('pipelineSnapshot').innerHTML = Object.entries(pipeline).map(([status, count]) => `
-    <div class="metric-item">
-      <strong>${status}</strong>
-      <div>${count} lead${count === 1 ? '' : 's'}</div>
-      <div class="small">${total ? Math.round((count/total)*100) : 0}% of current pipeline</div>
-    </div>`).join('');
+    <div class="metric-item"><strong>${status}</strong><div>${count} lead${count === 1 ? '' : 's'}</div><div class="small">${total ? Math.round((count/total)*100) : 0}% of current pipeline</div></div>`).join('');
 
   const src = sourceBreakdown();
   const srcRows = Object.entries(src).sort((a,b) => b[1].total - a[1].total);
   document.getElementById('sourcePerformance').innerHTML = srcRows.length ? `
     <table class="table">
       <thead><tr><th>Source</th><th>Total</th><th>Sold</th><th>Close %</th></tr></thead>
-      <tbody>
-        ${srcRows.map(([name, stats]) => `<tr><td>${escapeHtml(name)}</td><td>${stats.total}</td><td>${stats.sold}</td><td>${stats.total ? Math.round((stats.sold / stats.total) * 100) : 0}%</td></tr>`).join('')}
-      </tbody>
+      <tbody>${srcRows.map(([name, stats]) => `<tr><td>${escapeHtml(name)}</td><td>${stats.total}</td><td>${stats.sold}</td><td>${stats.total ? Math.round((stats.sold / stats.total) * 100) : 0}%</td></tr>`).join('')}</tbody>
     </table>` : `<div class="empty">No source data yet.</div>`;
 }
 
@@ -492,17 +531,15 @@ function renderLeads(){
   document.getElementById('leadList').innerHTML = leads.length ? leads.map(l => `
     <div class="lead-card" onclick="openLead('${l.id}')">
       <div>
-        <div class="lead-name">${escapeHtml(l.firstName)} ${escapeHtml(l.lastName)}</div>
-        <div class="lead-meta">${escapeHtml(l.phone || 'No phone')} • ${escapeHtml(l.email || 'No email')}<br>${escapeHtml(l.vehicleInterest || 'No vehicle entered')} • Stock ${escapeHtml(l.stockNumber || '—')} • ${escapeHtml(l.paymentType || '—')}<br>Budget ${escapeHtml(l.budget || '—')} • Follow-up ${escapeHtml(fmtDate(l.followUpDate))}</div>
+        <div class="lead-name">${escapeHtml(l.customerName || [l.firstName,l.lastName].filter(Boolean).join(' '))}</div>
+        <div class="lead-meta">${escapeHtml(l.phone || 'No phone')} • ${escapeHtml(l.vehicleInterest || 'No vehicle entered')}<br>Stock ${escapeHtml(l.stockNumber || '—')} • ${escapeHtml(l.paymentType || '—')} • Gross ${escapeHtml(l.gross || '—')}<br>Follow-up ${escapeHtml(fmtDate(l.followUpDate))}</div>
         <div class="pills">
           <span class="pill ${statusClass(l.status || 'Fresh')}">${escapeHtml(l.status || 'Fresh')}</span>
           <span class="pill blue">${escapeHtml(l.leadSource || '—')}</span>
-          <span class="pill ${l.googleReview === 'Yes' ? 'green' : 'gray'}">Review: ${escapeHtml(l.googleReview || 'No')}</span>
+          <span class="pill gray">${escapeHtml(l.vehicleType || '—')}</span>
         </div>
       </div>
-      <div class="inline-actions">
-        <button class="btn secondary" type="button" onclick="event.stopPropagation();openLead('${l.id}')">Open</button>
-      </div>
+      <div class="inline-actions"><button class="btn secondary" type="button" onclick="event.stopPropagation();openLead('${l.id}')">Open</button></div>
     </div>`).join('') : `<div class="empty">No leads match your filters.</div>`;
 }
 
@@ -515,19 +552,13 @@ function followUpBucket(dateStr, status){
 }
 
 function renderTasks(){
-  const rows = [...state.leads]
-    .map(l => ({ lead:l, bucket:followUpBucket(l.followUpDate, l.status || 'Fresh') }))
-    .filter(x => x.bucket)
-    .sort((a,b) => (a.lead.followUpDate || '').localeCompare(b.lead.followUpDate || ''));
+  const rows = [...state.leads].map(l => ({ lead:l, bucket:followUpBucket(l.followUpDate, l.status || 'Fresh') })).filter(x => x.bucket).sort((a,b) => (a.lead.followUpDate || '').localeCompare(b.lead.followUpDate || ''));
   document.getElementById('taskList').innerHTML = rows.length ? rows.map(({lead,bucket}) => `
     <div class="lead-card" onclick="openLead('${lead.id}')">
       <div>
-        <div class="lead-name">${escapeHtml(lead.firstName)} ${escapeHtml(lead.lastName)}</div>
+        <div class="lead-name">${escapeHtml(lead.customerName || [lead.firstName,lead.lastName].filter(Boolean).join(' '))}</div>
         <div class="lead-meta">${escapeHtml(bucket)} • ${escapeHtml(fmtDate(lead.followUpDate))} • ${escapeHtml(lead.followUpMethod || 'No method')}<br>${escapeHtml(lead.phone || 'No phone')} • ${escapeHtml(lead.vehicleInterest || 'No vehicle entered')}</div>
-        <div class="pills">
-          <span class="pill ${bucket === 'Overdue' ? 'red' : bucket === 'Due Today' ? 'orange' : 'blue'}">${escapeHtml(bucket)}</span>
-          <span class="pill ${statusClass(lead.status || 'Fresh')}">${escapeHtml(lead.status || 'Fresh')}</span>
-        </div>
+        <div class="pills"><span class="pill ${bucket === 'Overdue' ? 'red' : bucket === 'Due Today' ? 'orange' : 'blue'}">${escapeHtml(bucket)}</span><span class="pill ${statusClass(lead.status || 'Fresh')}">${escapeHtml(lead.status || 'Fresh')}</span></div>
       </div>
       <div class="inline-actions"><button class="btn secondary" type="button" onclick="event.stopPropagation();openLead('${lead.id}')">Open</button></div>
     </div>`).join('') : `<div class="empty">No follow-up tasks are currently scheduled.</div>`;
@@ -535,12 +566,21 @@ function renderTasks(){
 
 function renderAll(){ renderDashboard(); renderLeads(); renderTasks(); }
 
-function formToLead(form){
-  const data = Object.fromEntries(new FormData(form).entries());
+function normalizeLead(data){
+  const fullName = (data.customerName || '').trim();
+  const parts = fullName ? fullName.split(/\s+/) : [];
+  const firstName = data.firstName || parts[0] || '';
+  const lastName = data.lastName || parts.slice(1).join(' ') || '';
+  const customerName = fullName || [firstName, lastName].filter(Boolean).join(' ');
+  const budget = data.financeBudget || data.cashBudget || data.budget || '';
   return {
     id: uid(),
     ...data,
-    status: 'Fresh',
+    firstName,
+    lastName,
+    customerName,
+    budget,
+    status: data.status || 'Fresh',
     date: data.date || todayISO(),
     salesperson: data.salesperson || 'Mekiah',
     googleReview: data.googleReview || 'No',
@@ -550,7 +590,18 @@ function formToLead(form){
 
 document.getElementById('guestForm').addEventListener('submit', (e) => {
   e.preventDefault();
-  const lead = formToLead(e.target);
+  const lead = normalizeLead(Object.fromEntries(new FormData(e.target).entries()));
+  state.leads.unshift(lead);
+  persist();
+  e.target.reset();
+  selectedLeadId = lead.id;
+  renderAll();
+  openLead(lead.id);
+});
+
+document.getElementById('quickLeadForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const lead = normalizeLead(Object.fromEntries(new FormData(e.target).entries()));
   state.leads.unshift(lead);
   persist();
   e.target.reset();
@@ -561,7 +612,8 @@ document.getElementById('guestForm').addEventListener('submit', (e) => {
 
 document.getElementById('printCurrentBtn').addEventListener('click', () => {
   const data = Object.fromEntries(new FormData(document.getElementById('guestForm')).entries());
-  const temp = { ...data, firstName:data.firstName || '', lastName:data.lastName || '', salesperson:data.salesperson || 'Mekiah', date:data.date || todayISO(), status:'Unsaved', createdAt:new Date().toISOString() };
+  const temp = normalizeLead(data);
+  temp.status = 'Unsaved';
   printLead(temp);
 });
 
@@ -569,7 +621,7 @@ function openLead(id){
   selectedLeadId = id;
   const lead = getLead(id);
   if(!lead) return;
-  document.getElementById('modalLeadName').textContent = `${lead.firstName || ''} ${lead.lastName || ''}`.trim() || 'Lead Profile';
+  document.getElementById('modalLeadName').textContent = lead.customerName || [lead.firstName, lead.lastName].filter(Boolean).join(' ') || 'Lead Profile';
   document.getElementById('modalLeadSub').textContent = `${lead.vehicleInterest || 'No vehicle selected'} • ${lead.leadSource || '—'} • Entered ${fmtDate(lead.createdAt)}`;
   document.getElementById('modalBody').innerHTML = modalTemplate(lead);
   document.getElementById('leadModalBackdrop').classList.add('show');
@@ -594,14 +646,14 @@ function modalTemplate(lead){
     <div id="leadView_${lead.id}">
       <div class="profile-grid">
         <div class="profile-block">
-          <h4>Customer</h4>
+          <h4>Deal Setup</h4>
           <div class="detail-grid">
             ${detailRow('Salesperson', lead.salesperson)}
             ${detailRow('Date', fmtDate(lead.date))}
+            ${detailRow('Customer Name', lead.customerName)}
+            ${detailRow('Deal Number', lead.dealNumber)}
             ${detailRow('Phone', lead.phone)}
-            ${detailRow('Email', lead.email)}
-            ${detailRow('Birthday', fmtDate(lead.birthday))}
-            ${detailRow('Address', lead.address)}
+            ${detailRow('Lead Source', lead.leadSource)}
           </div>
         </div>
         <div class="profile-block">
@@ -609,43 +661,45 @@ function modalTemplate(lead){
           <div class="detail-grid">
             ${detailRow('Vehicle Interest', lead.vehicleInterest)}
             ${detailRow('Stock Number', lead.stockNumber)}
+            ${detailRow('Vehicle Type', lead.vehicleType)}
+            ${detailRow('Cash / Finance', lead.paymentType)}
+            ${detailRow('Cash Budget', lead.cashBudget)}
+            ${detailRow('Finance Budget', lead.financeBudget)}
+            ${detailRow('Most Important', lead.topPriority)}
+            ${detailRow('Gross', lead.gross)}
             ${detailRow('Color Preference', lead.colorPreference)}
-            ${detailRow('Must-Have Features', lead.mustHaveFeatures)}
-            ${detailRow('Budget', lead.budget)}
-            ${detailRow('Payment Goal', lead.paymentGoal)}
-            ${detailRow('Cash / Finance / Lease', lead.paymentType)}
-            ${detailRow('Down Payment', lead.downPayment)}
-            ${detailRow('Trade In', lead.tradeIn)}
-            ${detailRow('Current Vehicle', lead.currentVehicle)}
-            ${detailRow('Current Payment', lead.currentPayment)}
-            ${detailRow('Credit Situation', lead.creditSituation)}
+            ${detailRow('Must Have', lead.mustHaveFeatures)}
           </div>
         </div>
         <div class="profile-block">
           <h4>Pipeline / Follow-Up</h4>
           <div class="detail-grid">
             ${detailRow('Status', `<span class="pill ${statusClass(lead.status || 'Fresh')}">${escapeHtml(lead.status || 'Fresh')}</span>`, true)}
-            ${detailRow('Lead Source', lead.leadSource)}
             ${detailRow('Timeline', lead.timeline)}
             ${detailRow('Follow-Up Date', fmtDate(lead.followUpDate))}
             ${detailRow('Follow-Up Method', lead.followUpMethod)}
-            ${detailRow('Appointment Date', fmtDate(lead.appointmentDate))}
             ${detailRow('Google Review', lead.googleReview)}
-            ${detailRow('Objection / Concern', lead.objection)}
+            ${detailRow('Notes', lead.notes)}
           </div>
         </div>
       </div>
       <div class="card" style="margin-top:18px;padding:18px;box-shadow:none;">
-        <h4 style="margin:0 0 12px;font-size:15px;">License & Insurance</h4>
+        <h4 style="margin:0 0 12px;font-size:15px;">Trade / Insurance</h4>
         <div class="detail-grid">
+          ${detailRow('Trade Year', lead.tradeYear)}
+          ${detailRow('Trade Make', lead.tradeMake)}
+          ${detailRow('Trade Mileage', lead.tradeMileage)}
+          ${detailRow('Trade VIN', lead.tradeVin)}
+          ${detailRow('Financed Through', lead.tradeFinancedThrough)}
+          ${detailRow('Paid Off / Balance', lead.tradePayoffStatus)}
+          ${detailRow('Per Diem', lead.tradePerDiem)}
+          ${detailRow('20 Day Payoff', lead.trade20DayPayoff)}
           ${detailRow('Driver License #', lead.driversLicense)}
-          ${detailRow('License State', lead.licenseState)}
-          ${detailRow('License Expiration', fmtDate(lead.licenseExpiration))}
+          ${detailRow('License Exp', fmtDate(lead.licenseExpiration))}
           ${detailRow('Insurance Company', lead.insuranceCompany)}
-          ${detailRow('Insurance Policy #', lead.insurancePolicy)}
-          ${detailRow('Insurance Agent / Contact', lead.insuranceAgent)}
-          ${detailRow('Use Case', lead.useCase)}
-          ${detailRow('Notes', lead.notes)}
+          ${detailRow('Policy Number', lead.insurancePolicy)}
+          ${detailRow('Insurance Start', fmtDate(lead.insuranceStartDate))}
+          ${detailRow('Insurance Exp', fmtDate(lead.insuranceEndDate))}
         </div>
       </div>
       <div class="waiver" style="margin-top:18px;">Customer is responsible for all damages to the vehicle regardless of fault. and s/he is advised to contact his/her own insurance agent or broker to ensure insurance coverage<br><br>I hereby acknowledge that I have read and understand the preceding demo conditions, and agree to abide them</div>
@@ -655,39 +709,31 @@ function modalTemplate(lead){
     <div id="leadEdit_${lead.id}" class="hidden">
       <form onsubmit="saveLeadEdit(event,'${lead.id}')">
         <div class="form-grid four">
+          ${inputField('Customer Name','customerName',lead.customerName)}
           ${inputField('Salesperson','salesperson',lead.salesperson)}
           ${inputField('Date','date',lead.date,'date')}
-          ${selectField('Status','status',lead.status || 'Fresh',['Fresh','Working','Appointment','Sold','Lost'])}
-          ${selectField('Google Review','googleReview',lead.googleReview || 'No',['No','Yes'])}
+          ${inputField('Deal Number','dealNumber',lead.dealNumber)}
         </div>
         <div class="form-grid four" style="margin-top:14px;">
-          ${inputField('First Name','firstName',lead.firstName)}
-          ${inputField('Last Name','lastName',lead.lastName)}
           ${inputField('Phone','phone',lead.phone)}
-          ${inputField('Email','email',lead.email,'email')}
-        </div>
-        <div class="form-grid four" style="margin-top:14px;">
           ${inputField('Vehicle Interest','vehicleInterest',lead.vehicleInterest)}
           ${inputField('Stock Number','stockNumber',lead.stockNumber)}
-          ${inputField('Color Preference','colorPreference',lead.colorPreference)}
-          ${inputField('Budget','budget',lead.budget)}
+          ${inputField('Vehicle Type','vehicleType',lead.vehicleType)}
         </div>
         <div class="form-grid four" style="margin-top:14px;">
-          ${inputField('Payment Goal','paymentGoal',lead.paymentGoal)}
+          ${selectField('Status','status',lead.status || 'Fresh',['Fresh','Working','Appointment','Sold','Lost'])}
+          ${selectField('Lead Source','leadSource',lead.leadSource || 'Personal Lead',['Personal Lead','Dealer Lead','Phone Up','Fresh Up','Internet Lead','Repeat Customer','Referral','Walk-In','Other'])}
           ${selectField('Payment Type','paymentType',lead.paymentType || 'Finance',['Finance','Cash','Lease','Undecided'])}
-          ${inputField('Down Payment','downPayment',lead.downPayment)}
-          ${selectField('Trade In','tradeIn',lead.tradeIn || 'No',['No','Yes'])}
+          ${inputField('Gross','gross',lead.gross)}
         </div>
         <div class="form-grid four" style="margin-top:14px;">
+          ${inputField('Cash Budget','cashBudget',lead.cashBudget)}
+          ${inputField('Finance Budget','financeBudget',lead.financeBudget)}
+          ${selectField('Most Important','topPriority',lead.topPriority || 'Monthly Payment',['Monthly Payment','OTD Price','All Features','Vehicle Condition','Approval','Color / Looks'])}
           ${inputField('Follow-Up Date','followUpDate',lead.followUpDate,'date')}
-          ${selectField('Follow-Up Method','followUpMethod',lead.followUpMethod || 'Call',['Call','Text','Email','In Person'])}
-          ${inputField('Appointment Date','appointmentDate',lead.appointmentDate,'date')}
-          ${selectField('Timeline','timeline',lead.timeline || 'Today',['Today','This Week','This Month','30-60 Days','Just Shopping'])}
         </div>
-        <div style="margin-top:14px;">
-          <label class="label">Notes</label>
-          <textarea name="notes">${escapeHtml(lead.notes || '')}</textarea>
-        </div>
+        <div style="margin-top:14px;"><label class="label">Must Have</label><textarea name="mustHaveFeatures">${escapeHtml(lead.mustHaveFeatures || '')}</textarea></div>
+        <div style="margin-top:14px;"><label class="label">Notes</label><textarea name="notes">${escapeHtml(lead.notes || '')}</textarea></div>
         <div class="inline-actions" style="margin-top:16px;">
           <button class="btn" type="submit">Save Changes</button>
           <button class="btn secondary" type="button" onclick="toggleEdit('${lead.id}')">Cancel</button>
@@ -696,15 +742,9 @@ function modalTemplate(lead){
     </div>`;
 }
 
-function detailRow(label, value, raw = false){
-  return `<div class="detail-row"><div class="detail-label">${label}</div><div class="detail-value">${raw ? value : escapeHtml(value || '—')}</div></div>`;
-}
-function inputField(label,name,value='',type='text'){
-  return `<div><label class="label">${label}</label><input class="input" name="${name}" type="${type}" value="${escapeHtml(value || '')}" /></div>`;
-}
-function selectField(label,name,current,options){
-  return `<div><label class="label">${label}</label><select name="${name}">${options.map(opt => `<option ${opt === current ? 'selected' : ''}>${opt}</option>`).join('')}</select></div>`;
-}
+function detailRow(label, value, raw = false){ return `<div class="detail-row"><div class="detail-label">${label}</div><div class="detail-value">${raw ? value : escapeHtml(value || '—')}</div></div>`; }
+function inputField(label,name,value='',type='text'){ return `<div><label class="label">${label}</label><input class="input" name="${name}" type="${type}" value="${escapeHtml(value || '')}" /></div>`; }
+function selectField(label,name,current,options){ return `<div><label class="label">${label}</label><select name="${name}">${options.map(opt => `<option ${opt === current ? 'selected' : ''}>${opt}</option>`).join('')}</select></div>`; }
 
 function toggleEdit(id){
   const view = document.getElementById(`leadView_${id}`);
@@ -716,6 +756,11 @@ window.toggleEdit = toggleEdit;
 function saveLeadEdit(e,id){
   e.preventDefault();
   const updates = Object.fromEntries(new FormData(e.target).entries());
+  const fullName = (updates.customerName || '').trim();
+  const parts = fullName ? fullName.split(/\s+/) : [];
+  updates.firstName = parts[0] || updates.firstName || '';
+  updates.lastName = parts.slice(1).join(' ') || updates.lastName || '';
+  updates.budget = updates.financeBudget || updates.cashBudget || updates.budget || '';
   state.leads = state.leads.map(l => l.id === id ? { ...l, ...updates } : l);
   persist();
   renderAll();
@@ -726,7 +771,7 @@ window.saveLeadEdit = saveLeadEdit;
 function deleteLead(id){
   const lead = getLead(id);
   if(!lead) return;
-  if(!confirm(`Delete ${lead.firstName || ''} ${lead.lastName || ''}?`)) return;
+  if(!confirm(`Delete ${lead.customerName || [lead.firstName,lead.lastName].filter(Boolean).join(' ')}?`)) return;
   state.leads = state.leads.filter(l => l.id !== id);
   persist();
   closeModal();
@@ -737,7 +782,7 @@ window.deleteLead = deleteLead;
 function duplicateLead(id){
   const lead = getLead(id);
   if(!lead) return;
-  const copy = { ...lead, id: uid(), status:'Fresh', createdAt:new Date().toISOString(), firstName: lead.firstName, lastName: lead.lastName + ' Copy' };
+  const copy = { ...lead, id: uid(), status:'Fresh', createdAt:new Date().toISOString(), customerName: (lead.customerName || [lead.firstName,lead.lastName].filter(Boolean).join(' ')) + ' Copy' };
   state.leads.unshift(copy);
   persist();
   renderAll();
@@ -752,39 +797,39 @@ function printLead(lead){
   document.getElementById('printArea').innerHTML = `
     <div class="print-head">
       <h1>Guest Sheet / Needs Assessment</h1>
-      <div class="print-sub">${escapeHtml((lead.firstName || '') + ' ' + (lead.lastName || ''))} • Salesperson: ${escapeHtml(lead.salesperson || 'Mekiah')} • Date: ${escapeHtml(fmtDate(lead.date || lead.createdAt))}</div>
+      <div class="print-sub">${escapeHtml(lead.customerName || [lead.firstName,lead.lastName].filter(Boolean).join(' '))} • Salesperson: ${escapeHtml(lead.salesperson || 'Mekiah')} • Date: ${escapeHtml(fmtDate(lead.date || lead.createdAt))}</div>
     </div>
     <div class="print-grid">
+      ${printItem('Customer Name', lead.customerName)}
+      ${printItem('Deal Number', lead.dealNumber)}
+      ${printItem('Stock #', lead.stockNumber)}
+      ${printItem('Vehicle of Interest', lead.vehicleInterest)}
+      ${printItem('VOI Type', lead.vehicleType)}
+      ${printItem('Cash / Finance', lead.paymentType)}
+      ${printItem('Cash Budget', lead.cashBudget)}
+      ${printItem('Finance Budget', lead.financeBudget)}
+      ${printItem('Most Important', lead.topPriority)}
+      ${printItem('Must Have', lead.mustHaveFeatures)}
       ${printItem('Phone', lead.phone)}
-      ${printItem('Email', lead.email)}
-      ${printItem('Birthday', fmtDate(lead.birthday))}
-      ${printItem('Address', lead.address)}
+      ${printItem('Gross', lead.gross)}
+      ${printItem('Trade Year', lead.tradeYear)}
+      ${printItem('Trade Make', lead.tradeMake)}
+      ${printItem('Trade Mileage', lead.tradeMileage)}
+      ${printItem('Trade VIN', lead.tradeVin)}
+      ${printItem('Financed Through', lead.tradeFinancedThrough)}
+      ${printItem('Paid Off / Balance', lead.tradePayoffStatus)}
+      ${printItem('Per Diem', lead.tradePerDiem)}
+      ${printItem('20 Day Payoff', lead.trade20DayPayoff)}
       ${printItem('Driver License #', lead.driversLicense)}
-      ${printItem('License State', lead.licenseState)}
-      ${printItem('License Expiration', fmtDate(lead.licenseExpiration))}
+      ${printItem('License Exp Date', fmtDate(lead.licenseExpiration))}
       ${printItem('Insurance Company', lead.insuranceCompany)}
-      ${printItem('Insurance Policy Number', lead.insurancePolicy)}
-      ${printItem('Insurance Agent / Contact', lead.insuranceAgent)}
+      ${printItem('Policy Number', lead.insurancePolicy)}
+      ${printItem('Insurance Start', fmtDate(lead.insuranceStartDate))}
+      ${printItem('Insurance Exp', fmtDate(lead.insuranceEndDate))}
       ${printItem('Lead Source', lead.leadSource)}
       ${printItem('Timeline', lead.timeline)}
-      ${printItem('Vehicle Interest', lead.vehicleInterest)}
-      ${printItem('Stock Number', lead.stockNumber)}
-      ${printItem('Color Preference', lead.colorPreference)}
-      ${printItem('Must-Have Features', lead.mustHaveFeatures)}
-      ${printItem('Budget', lead.budget)}
-      ${printItem('Payment Goal', lead.paymentGoal)}
-      ${printItem('Cash / Finance / Lease', lead.paymentType)}
-      ${printItem('Down Payment', lead.downPayment)}
-      ${printItem('Trade In', lead.tradeIn)}
-      ${printItem('Current Vehicle', lead.currentVehicle)}
-      ${printItem('Current Payment', lead.currentPayment)}
-      ${printItem('Credit Situation', lead.creditSituation)}
       ${printItem('Follow-Up Date', fmtDate(lead.followUpDate))}
       ${printItem('Follow-Up Method', lead.followUpMethod)}
-      ${printItem('Appointment Date', fmtDate(lead.appointmentDate))}
-      ${printItem('Google Review', lead.googleReview)}
-      ${printItem('Use Case', lead.useCase)}
-      ${printItem('Objection / Concern', lead.objection)}
       ${printItem('Notes', lead.notes)}
     </div>
     <div class="print-waiver">Customer is responsible for all damages to the vehicle regardless of fault. and s/he is advised to contact his/her own insurance agent or broker to ensure insurance coverage<br><br>I hereby acknowledge that I have read and understand the preceding demo conditions, and agree to abide them</div>
@@ -792,9 +837,7 @@ function printLead(lead){
   window.print();
 }
 
-function printItem(label, value){
-  return `<div class="print-item"><div class="print-label">${label}</div><div class="print-value">${escapeHtml(value || '—')}</div></div>`;
-}
+function printItem(label, value){ return `<div class="print-item"><div class="print-label">${label}</div><div class="print-value">${escapeHtml(value || '—')}</div></div>`; }
 
 renderAll();
 setTab('dashboard');
