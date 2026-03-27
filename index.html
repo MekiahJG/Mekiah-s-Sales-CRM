@@ -1,30 +1,803 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sales CRM - Guest Sheet Upgrade</title>
-  <style>
-    :root{--bg:#f6f7fb;--card:#ffffff;--text:#111827;--muted:#6b7280;--line:#e5e7eb;--accent:#111827;--shadow:0 10px 30px rgba(0,0,0,.06);--radius:18px}
-    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
-    .app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}.sidebar{background:#fff;border-right:1px solid var(--line);padding:24px 16px;position:sticky;top:0;height:100vh}.brand{font-size:24px;font-weight:800;letter-spacing:-.03em;margin-bottom:4px}.sub{color:var(--muted);font-size:13px;margin-bottom:22px}.nav{display:flex;flex-direction:column;gap:8px}.nav button{border:none;background:#fff;text-align:left;padding:14px;border-radius:14px;font-size:15px;font-weight:600;cursor:pointer;color:#111827;border:1px solid transparent}.nav button.active{background:#f3f4f6;border-color:#d1d5db}.main{padding:28px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:24px;flex-wrap:wrap}.title{font-size:30px;font-weight:800;letter-spacing:-.04em;margin:0}.subtitle{color:var(--muted);margin:6px 0 0;font-size:14px}.actions{display:flex;gap:10px;flex-wrap:wrap}.btn{border:none;border-radius:14px;padding:12px 16px;font-weight:700;cursor:pointer;background:var(--accent);color:#fff;box-shadow:var(--shadow)}.btn.secondary{background:#fff;color:var(--text);border:1px solid var(--line);box-shadow:none}.grid{display:grid;gap:18px}.grid.kpis{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:22px}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}.kpi-label{color:var(--muted);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}.kpi-value{font-size:32px;font-weight:800;margin-top:8px;letter-spacing:-.04em}.kpi-sub{color:var(--muted);font-size:13px;margin-top:6px}.section-title{font-size:18px;font-weight:800;margin:0 0 14px;letter-spacing:-.02em}.two-col{display:grid;grid-template-columns:2fr 1fr;gap:18px}.lead-list{display:grid;gap:12px}.lead-item{border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;background:#fff}.lead-name{font-size:18px;font-weight:800;margin:0 0 4px}.lead-meta{color:var(--muted);font-size:14px;line-height:1.5}.pill{display:inline-block;padding:7px 10px;border-radius:999px;font-size:12px;font-weight:800;margin-right:8px;margin-top:8px;background:#eef2ff;color:#3730a3}.pill.green{background:#ecfdf5;color:#166534}.pill.gray{background:#f3f4f6;color:#374151}.detail-panel{min-height:360px}.detail-empty{color:var(--muted);font-size:15px;line-height:1.7}.field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.field-grid.one{grid-template-columns:1fr}label{display:block;font-size:13px;font-weight:800;color:#374151;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}input,select,textarea{width:100%;border:1px solid #d1d5db;border-radius:12px;padding:12px 13px;font-size:15px;outline:none;background:#fff}textarea{min-height:95px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.1)}.form-section{border-top:1px solid var(--line);padding-top:18px;margin-top:18px}.form-section:first-of-type{border-top:none;padding-top:0;margin-top:0}.form-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:20px}.toolbar{display:flex;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap;align-items:center}.search{max-width:340px;width:100%}.hidden{display:none !important}.muted{color:var(--muted)}.small{font-size:13px}.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;margin-top:14px}.detail-row{padding:10px 0;border-bottom:1px solid #f1f5f9}.detail-label{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}.detail-value{font-size:15px;font-weight:600;word-break:break-word}.status-select{min-width:150px}.stats-list{display:grid;gap:12px}.stats-item{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}.stats-item strong{display:block;margin-bottom:6px}.print-wrap{display:none}@media (max-width:1060px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto;border-right:none;border-bottom:1px solid var(--line)}.grid.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.two-col{grid-template-columns:1fr}}@media (max-width:700px){.field-grid,.field-grid.three,.detail-grid,.grid.kpis{grid-template-columns:1fr}.main{padding:18px}}@media print{body *{visibility:hidden !important}.print-wrap,.print-wrap *{visibility:visible !important}.print-wrap{display:block !important;position:absolute;top:0;left:0;width:100%;background:#fff;color:#000;padding:24px}.print-section{margin-bottom:20px;page-break-inside:avoid}.print-title{font-size:28px;font-weight:800;margin-bottom:8px}.print-sub{font-size:13px;color:#444;margin-bottom:16px}.print-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}.print-item{border-bottom:1px solid #ddd;padding:8px 0}.print-label{font-size:11px;font-weight:800;text-transform:uppercase;color:#444}.print-value{font-size:14px;margin-top:4px;white-space:pre-wrap}}  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Luxury Sales CRM</title>
+<style>
+:root{
+  --bg:#f5f7fb;
+  --card:rgba(255,255,255,0.88);
+  --card-solid:#ffffff;
+  --line:#e6eaf2;
+  --text:#0f172a;
+  --muted:#667085;
+  --accent:#111827;
+  --accent-2:#1d4ed8;
+  --soft:#eef2ff;
+  --green:#166534;
+  --green-bg:#ecfdf3;
+  --orange:#9a3412;
+  --orange-bg:#fff7ed;
+  --red:#991b1b;
+  --red-bg:#fef2f2;
+  --shadow:0 20px 45px rgba(15,23,42,.08);
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#f8fafc 0%,#eef2f8 100%);color:var(--text)}
+button,input,select,textarea{font:inherit}
+body.modal-open{overflow:hidden}
+.app{display:grid;grid-template-columns:270px 1fr;min-height:100vh}
+.sidebar{padding:24px 18px;border-right:1px solid var(--line);background:rgba(255,255,255,.82);backdrop-filter:blur(18px);position:sticky;top:0;height:100vh}
+.brand{font-size:26px;font-weight:900;letter-spacing:-.04em;margin-bottom:6px}
+.brand-sub{color:var(--muted);font-size:13px;line-height:1.55;margin-bottom:22px}
+.nav{display:grid;gap:8px}
+.nav button{border:none;background:transparent;border:1px solid transparent;border-radius:16px;padding:14px 14px;text-align:left;font-weight:700;color:#1f2937;cursor:pointer;transition:.18s ease}
+.nav button:hover{background:#f8fafc;border-color:#e5e7eb}
+.nav button.active{background:#111827;color:#fff;box-shadow:var(--shadow)}
+.side-note{margin-top:18px;padding:16px;border-radius:18px;background:linear-gradient(135deg,#111827,#1f2937);color:#fff}
+.side-note .tiny{opacity:.8}
+.main{padding:28px}
+.topbar{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;margin-bottom:22px}
+.title{margin:0;font-size:34px;font-weight:900;letter-spacing:-.05em}
+.subtitle{margin:7px 0 0;color:var(--muted);font-size:14px}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{border:none;border-radius:16px;padding:12px 16px;background:#111827;color:#fff;font-weight:800;cursor:pointer;box-shadow:var(--shadow);transition:.18s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn.secondary{background:#fff;color:#111827;border:1px solid var(--line);box-shadow:none}
+.btn.soft{background:#eef2ff;color:#1e3a8a;box-shadow:none}
+.btn.danger{background:#7f1d1d;color:#fff}
+.card{background:var(--card);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.6);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+.section-title{margin:0 0 14px;font-size:18px;font-weight:900;letter-spacing:-.03em}
+.grid{display:grid;gap:18px}
+.kpis{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}
+.kpi{padding:18px 18px 16px;border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(248,250,252,.92));border:1px solid var(--line)}
+.kpi-label{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:900}
+.kpi-value{margin-top:10px;font-size:34px;font-weight:900;letter-spacing:-.05em}
+.kpi-sub{margin-top:6px;color:var(--muted);font-size:13px}
+.split{display:grid;grid-template-columns:1.65fr 1fr;gap:18px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.input, select, textarea{width:100%;border:1px solid #d7dce5;background:#fff;border-radius:14px;padding:12px 13px;outline:none;transition:.18s ease}
+.input:focus, select:focus, textarea:focus{border-color:#3b82f6;box-shadow:0 0 0 4px rgba(59,130,246,.12)}
+textarea{min-height:100px;resize:vertical}
+.search-wrap{display:flex;gap:10px;flex-wrap:wrap}
+.label{display:block;margin-bottom:7px;font-size:12px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#475467}
+.form-grid{display:grid;gap:14px}
+.form-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.form-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.form-grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.form-section{margin-top:22px;padding-top:18px;border-top:1px solid #edf1f5}
+.form-section:first-of-type{margin-top:0;padding-top:0;border-top:none}
+.section-caption{color:var(--muted);font-size:13px;margin:-8px 0 14px}
+.lead-list{display:grid;gap:12px}
+.lead-card{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:start;padding:16px;border:1px solid var(--line);background:rgba(255,255,255,.94);border-radius:18px;cursor:pointer;transition:.18s ease}
+.lead-card:hover{transform:translateY(-1px);box-shadow:0 14px 28px rgba(15,23,42,.06)}
+.lead-name{font-size:18px;font-weight:900;letter-spacing:-.03em}
+.lead-meta{margin-top:5px;color:var(--muted);font-size:14px;line-height:1.6}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
+.pill{display:inline-flex;align-items:center;padding:7px 10px;border-radius:999px;font-size:12px;font-weight:900;border:1px solid transparent}
+.pill.gray{background:#f3f4f6;color:#374151}
+.pill.blue{background:#eef2ff;color:#3730a3}
+.pill.green{background:var(--green-bg);color:var(--green)}
+.pill.orange{background:var(--orange-bg);color:var(--orange)}
+.pill.red{background:var(--red-bg);color:var(--red)}
+.metric-list{display:grid;gap:12px}
+.metric-item{padding:14px;border-radius:18px;border:1px solid var(--line);background:#fff}
+.metric-item strong{display:block;font-size:15px;margin-bottom:5px}
+.metric-item .small{font-size:13px;color:var(--muted)}
+.hidden{display:none !important}
+.empty{color:var(--muted);font-size:14px;line-height:1.7;padding:10px 0}
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{padding:12px;border-bottom:1px solid #edf1f5;text-align:left;font-size:14px}
+.table th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.print-area{display:none}
+.modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.45);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;padding:20px;z-index:40}
+.modal-backdrop.show{display:flex}
+.modal{background:#fff;border-radius:26px;box-shadow:0 30px 80px rgba(15,23,42,.25);width:min(1180px,96vw);max-height:92vh;overflow:auto;border:1px solid rgba(255,255,255,.8)}
+.modal-header{position:sticky;top:0;background:rgba(255,255,255,.94);backdrop-filter:blur(18px);padding:22px 24px;border-bottom:1px solid #edf1f5;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;z-index:2}
+.modal-title{font-size:30px;font-weight:900;letter-spacing:-.05em;margin:0}
+.modal-sub{margin-top:6px;color:var(--muted);font-size:14px}
+.modal-body{padding:22px 24px 26px}
+.profile-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.profile-block{padding:16px;border:1px solid var(--line);border-radius:20px;background:#fcfdff}
+.profile-block h4{margin:0 0 12px;font-size:15px;font-weight:900}
+.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px}
+.detail-row{padding:10px 0;border-bottom:1px solid #eef2f6}
+.detail-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:900;color:var(--muted);margin-bottom:6px}
+.detail-value{font-size:14px;font-weight:700;line-height:1.5;word-break:break-word}
+.inline-actions{display:flex;gap:10px;flex-wrap:wrap}
+.signature-line{margin-top:28px;border-top:1px solid #111827;padding-top:8px;max-width:320px;font-size:13px;font-weight:700}
+.waiver{font-size:12px;line-height:1.75;color:#374151;padding:14px 16px;border-radius:16px;background:#fafafa;border:1px dashed #d6dae2;margin-top:18px}
+.footer-note{margin-top:18px;color:var(--muted);font-size:12px}
+@media (max-width:1200px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.split,.profile-grid{grid-template-columns:1fr}.form-grid.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.app{grid-template-columns:1fr}.sidebar{position:relative;height:auto;border-right:none;border-bottom:1px solid var(--line)}.form-grid.two,.form-grid.three,.detail-grid{grid-template-columns:1fr}}
+@media (max-width:640px){.main{padding:18px}.kpis,.form-grid.four{grid-template-columns:1fr}.modal-header,.modal-body{padding:18px}.lead-card{grid-template-columns:1fr}}
+@media print{
+  body *{visibility:hidden !important}
+  .print-area,.print-area *{visibility:visible !important}
+  .print-area{display:block !important;position:absolute;inset:0;background:#fff;padding:28px;color:#000}
+  .print-head{margin-bottom:16px}
+  .print-head h1{margin:0;font-size:28px}
+  .print-sub{margin-top:6px;color:#444;font-size:13px}
+  .print-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px}
+  .print-item{padding:8px 0;border-bottom:1px solid #ddd}
+  .print-label{font-size:11px;font-weight:900;text-transform:uppercase;color:#444}
+  .print-value{margin-top:5px;font-size:14px;white-space:pre-wrap}
+  .print-waiver{margin-top:20px;font-size:12px;line-height:1.7}
+  .print-signature{margin-top:36px;max-width:320px;border-top:1px solid #000;padding-top:8px;font-size:13px}
+}
+</style>
 </head>
 <body>
-<div class="app"><aside class="sidebar"><div class="brand">Sales CRM</div><div class="sub">Guest sheet, leads, and customer tracking</div><div class="nav"><button class="active" data-tab="dashboard">Dashboard</button><button data-tab="guestSheet">Guest Sheet / Needs Assessment</button><button data-tab="leads">Leads</button></div></aside><main class="main"><div class="topbar"><div><h1 class="title" id="pageTitle">Dashboard</h1><p class="subtitle" id="pageSubtitle">Track guest sheets, leads, and customer details in one place.</p></div><div class="actions"><button class="btn secondary" id="exportBtn">Export Leads</button><button class="btn" id="newGuestBtn">New Guest Sheet</button></div></div><section id="dashboardTab"><div class="grid kpis"><div class="card"><div class="kpi-label">Total Leads</div><div class="kpi-value" id="kpiTotal">0</div><div class="kpi-sub">Created from guest sheets automatically</div></div><div class="card"><div class="kpi-label">Fresh Leads</div><div class="kpi-value" id="kpiFresh">0</div><div class="kpi-sub">Not yet worked or just entered</div></div><div class="card"><div class="kpi-label">Appointments</div><div class="kpi-value" id="kpiAppt">0</div><div class="kpi-sub">Leads moved to appointment set</div></div><div class="card"><div class="kpi-label">Sold / Closed</div><div class="kpi-value" id="kpiSold">0</div><div class="kpi-sub">Delivered customers tracked here</div></div></div><div class="two-col"><div class="card"><div class="section-title">Recent Leads</div><div class="lead-list" id="recentLeads"></div></div><div class="card"><div class="section-title">Pipeline Snapshot</div><div class="stats-list" id="pipelineStats"></div></div></div></section><section id="guestSheetTab" class="hidden"><div class="card"><div class="section-title">Guest Sheet / Needs Assessment</div><form id="guestForm"><div class="form-section"><div class="field-grid"><div><label>First Name</label><input name="firstName" required /></div><div><label>Last Name</label><input name="lastName" required /></div></div><div class="field-grid three"><div><label>Phone</label><input name="phone" /></div><div><label>Email</label><input name="email" type="email" /></div><div><label>Date of Birth</label><input name="birthday" type="date" /></div></div></div><div class="form-section"><div class="field-grid three"><div><label>Driver License Number</label><input name="driversLicense" /></div><div><label>Driver License State</label><input name="licenseState" /></div><div><label>License Expiration</label><input name="licenseExpiration" type="date" /></div></div><div class="field-grid three"><div><label>Insurance Company</label><input name="insuranceCompany" /></div><div><label>Insurance Policy Number</label><input name="insurancePolicy" /></div><div><label>Insurance Agent / Contact</label><input name="insuranceAgent" /></div></div></div><div class="form-section"><div class="field-grid three"><div><label>Lead Source</label><select name="leadSource"><option>Personal Lead</option><option>Dealer Lead</option><option>Phone Up</option><option>Fresh Up</option><option>Internet Lead</option><option>Repeat Customer</option><option>Referral</option><option>Walk-In</option><option>Other</option></select></div><div><label>Budget</label><input name="budget" placeholder="$ / month or OTD" /></div><div><label>Payment Goal</label><input name="paymentGoal" placeholder="Target monthly payment" /></div></div><div class="field-grid three"><div><label>Cash or Finance</label><select name="paymentType"><option>Finance</option><option>Cash</option><option>Lease</option><option>Undecided</option></select></div><div><label>Down Payment</label><input name="downPayment" /></div><div><label>Trade In</label><select name="tradeIn"><option>No</option><option>Yes</option></select></div></div></div><div class="form-section"><div class="field-grid three"><div><label>Vehicle Interest</label><input name="vehicleInterest" placeholder="Stock #, year, make, model" /></div><div><label>Color Preference</label><input name="colorPreference" /></div><div><label>Stock Number</label><input name="stockNumber" /></div></div><div class="field-grid three"><div><label>Must-Have Features</label><input name="mustHaveFeatures" placeholder="Sunroof, 3rd row, leather..." /></div><div><label>Use Case</label><input name="useCase" placeholder="Family, commute, work truck..." /></div><div><label>Timeline to Buy</label><select name="timeline"><option>Today</option><option>This Week</option><option>This Month</option><option>30-60 Days</option><option>Just Shopping</option></select></div></div></div><div class="form-section"><div class="field-grid three"><div><label>Current Vehicle</label><input name="currentVehicle" /></div><div><label>Current Payment</label><input name="currentPayment" /></div><div><label>Credit Situation</label><select name="creditSituation"><option>Unknown</option><option>Good</option><option>Average</option><option>Challenged</option><option>Cash Buyer</option></select></div></div><div class="field-grid one"><div><label>Notes</label><textarea name="notes" placeholder="Anything important about the customer, objections, family situation, urgency, etc."></textarea></div></div></div><div class="form-actions"><button type="button" class="btn secondary" id="printCurrentGuestSheet">Print Current Form</button><button type="reset" class="btn secondary">Clear</button><button type="submit" class="btn">Save Guest Sheet as Lead</button></div></form></div></section><section id="leadsTab" class="hidden"><div class="card"><div class="toolbar"><div><div class="section-title" style="margin-bottom:4px;">Lead Manager</div><div class="small muted">Every completed guest sheet shows up here automatically.</div></div><input class="search" id="leadSearch" placeholder="Search by name, stock number, phone, source..." /></div><div class="two-col"><div><div class="lead-list" id="leadList"></div></div><div class="card detail-panel"><div class="section-title">Lead Profile</div><div id="leadDetail" class="detail-empty">Select a lead to see the full customer profile, needs assessment, budget, insurance info, and print options.</div></div></div></div></section></main></div><div class="print-wrap" id="printWrap"></div>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">Sales CRM</div>
+    <div class="brand-sub">Luxury pipeline manager with guest sheet intake, full lead profiles, conversion analytics, review tracking, and follow-up reminders.</div>
+    <div class="nav">
+      <button class="active" data-tab="dashboard">Dashboard</button>
+      <button data-tab="guest">Guest Sheet</button>
+      <button data-tab="leads">Leads</button>
+      <button data-tab="tasks">Follow-Ups</button>
+    </div>
+    <div class="side-note">
+      <div style="font-weight:900;margin-bottom:6px;">Built to sell faster</div>
+      <div class="tiny">Take the guest sheet once, turn it into a lead instantly, track status, and stay on top of your pipeline.</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <h1 class="title" id="pageTitle">Dashboard</h1>
+        <div class="subtitle" id="pageSubtitle">See your numbers, lead sources, review count, and follow-up pressure in one place.</div>
+      </div>
+      <div class="actions">
+        <button class="btn secondary" id="exportBtn">Export Data</button>
+        <button class="btn soft" id="seedDemoBtn">Load Demo Data</button>
+        <button class="btn" id="newGuestBtn">New Guest Sheet</button>
+      </div>
+    </div>
+
+    <section id="dashboardTab">
+      <div class="grid kpis">
+        <div class="kpi"><div class="kpi-label">Total Leads</div><div class="kpi-value" id="kpiTotal">0</div><div class="kpi-sub">All leads currently in your pipeline</div></div>
+        <div class="kpi"><div class="kpi-label">Sold</div><div class="kpi-value" id="kpiSold">0</div><div class="kpi-sub">Closed and delivered customers</div></div>
+        <div class="kpi"><div class="kpi-label">Close Rate</div><div class="kpi-value" id="kpiCloseRate">0%</div><div class="kpi-sub">Sold ÷ total leads</div></div>
+        <div class="kpi"><div class="kpi-label">Google Reviews</div><div class="kpi-value" id="kpiReviews">0</div><div class="kpi-sub">Leads marked as review received</div></div>
+      </div>
+
+      <div class="split">
+        <div class="card">
+          <div class="toolbar">
+            <div>
+              <h3 class="section-title">Recent Leads</h3>
+            </div>
+            <button class="btn secondary" onclick="setTab('leads')">Open Lead Manager</button>
+          </div>
+          <div class="lead-list" id="recentLeads"></div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <h3 class="section-title">Pipeline Snapshot</h3>
+            <div class="metric-list" id="pipelineSnapshot"></div>
+          </div>
+          <div class="card">
+            <h3 class="section-title">Lead Source Performance</h3>
+            <div id="sourcePerformance"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="guestTab" class="hidden">
+      <div class="card">
+        <h3 class="section-title">Guest Sheet / Needs Assessment</h3>
+        <div class="section-caption">This intake becomes a lead automatically when saved. It also prints as a clean customer worksheet.</div>
+        <form id="guestForm">
+          <div class="form-section">
+            <div class="form-grid four">
+              <div><label class="label">Salesperson</label><input class="input" name="salesperson" placeholder="Your name" /></div>
+              <div><label class="label">Date</label><input class="input" name="date" type="date" /></div>
+              <div><label class="label">Lead Source</label><select name="leadSource"><option>Personal Lead</option><option>Dealer Lead</option><option>Phone Up</option><option>Fresh Up</option><option>Internet Lead</option><option>Repeat Customer</option><option>Referral</option><option>Walk-In</option><option>Other</option></select></div>
+              <div><label class="label">Timeline to Buy</label><select name="timeline"><option>Today</option><option>This Week</option><option>This Month</option><option>30-60 Days</option><option>Just Shopping</option></select></div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h4 class="section-title" style="font-size:16px;">Customer Information</h4>
+            <div class="form-grid three">
+              <div><label class="label">First Name</label><input class="input" name="firstName" required /></div>
+              <div><label class="label">Last Name</label><input class="input" name="lastName" required /></div>
+              <div><label class="label">Birthday</label><input class="input" name="birthday" type="date" /></div>
+            </div>
+            <div class="form-grid three" style="margin-top:14px;">
+              <div><label class="label">Phone</label><input class="input" name="phone" /></div>
+              <div><label class="label">Email</label><input class="input" name="email" type="email" /></div>
+              <div><label class="label">Address</label><input class="input" name="address" /></div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h4 class="section-title" style="font-size:16px;">License & Insurance</h4>
+            <div class="form-grid three">
+              <div><label class="label">Driver License Number</label><input class="input" name="driversLicense" /></div>
+              <div><label class="label">License State</label><input class="input" name="licenseState" /></div>
+              <div><label class="label">License Expiration</label><input class="input" name="licenseExpiration" type="date" /></div>
+            </div>
+            <div class="form-grid three" style="margin-top:14px;">
+              <div><label class="label">Insurance Company</label><input class="input" name="insuranceCompany" /></div>
+              <div><label class="label">Insurance Policy Number</label><input class="input" name="insurancePolicy" /></div>
+              <div><label class="label">Insurance Agent / Contact</label><input class="input" name="insuranceAgent" /></div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h4 class="section-title" style="font-size:16px;">Vehicle / Deal Structure</h4>
+            <div class="form-grid four">
+              <div><label class="label">Vehicle Interest</label><input class="input" name="vehicleInterest" placeholder="Year, make, model" /></div>
+              <div><label class="label">Stock Number</label><input class="input" name="stockNumber" /></div>
+              <div><label class="label">Color Preference</label><input class="input" name="colorPreference" /></div>
+              <div><label class="label">Must-Have Features</label><input class="input" name="mustHaveFeatures" placeholder="Leather, sunroof, 3rd row" /></div>
+            </div>
+            <div class="form-grid four" style="margin-top:14px;">
+              <div><label class="label">Budget</label><input class="input" name="budget" placeholder="$ / month or OTD" /></div>
+              <div><label class="label">Payment Goal</label><input class="input" name="paymentGoal" /></div>
+              <div><label class="label">Cash / Finance / Lease</label><select name="paymentType"><option>Finance</option><option>Cash</option><option>Lease</option><option>Undecided</option></select></div>
+              <div><label class="label">Down Payment</label><input class="input" name="downPayment" /></div>
+            </div>
+            <div class="form-grid four" style="margin-top:14px;">
+              <div><label class="label">Trade In</label><select name="tradeIn"><option>No</option><option>Yes</option></select></div>
+              <div><label class="label">Current Vehicle</label><input class="input" name="currentVehicle" /></div>
+              <div><label class="label">Current Payment</label><input class="input" name="currentPayment" /></div>
+              <div><label class="label">Credit Situation</label><select name="creditSituation"><option>Unknown</option><option>Good</option><option>Average</option><option>Challenged</option><option>Cash Buyer</option></select></div>
+            </div>
+            <div class="form-grid two" style="margin-top:14px;">
+              <div><label class="label">Use Case</label><input class="input" name="useCase" placeholder="Family, commute, work, first car" /></div>
+              <div><label class="label">Objection / Concern</label><input class="input" name="objection" placeholder="Payment, color, approval, shopping around" /></div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h4 class="section-title" style="font-size:16px;">Follow-Up & Review</h4>
+            <div class="form-grid four">
+              <div><label class="label">Follow-Up Date</label><input class="input" name="followUpDate" type="date" /></div>
+              <div><label class="label">Follow-Up Method</label><select name="followUpMethod"><option>Call</option><option>Text</option><option>Email</option><option>In Person</option></select></div>
+              <div><label class="label">Appointment Date</label><input class="input" name="appointmentDate" type="date" /></div>
+              <div><label class="label">Google Review Received?</label><select name="googleReview"><option>No</option><option>Yes</option></select></div>
+            </div>
+            <div style="margin-top:14px;"><label class="label">Notes</label><textarea name="notes" placeholder="Customer story, hot buttons, family details, urgency, objections, next step..."></textarea></div>
+          </div>
+
+          <div class="form-section">
+            <h4 class="section-title" style="font-size:16px;">Demo Waiver</h4>
+            <div class="waiver">
+              Customer is responsible for all damages to the vehicle regardless of fault. and s/he is advised to contact his/her own insurance agent or broker to ensure insurance coverage
+              <br><br>
+              I hereby acknowledge that I have read and understand the preceding demo conditions, and agree to abide them
+            </div>
+            <div class="signature-line">Customer Signature</div>
+            <div class="footer-note">Print from the lead profile or print this form before saving if needed.</div>
+          </div>
+
+          <div class="inline-actions" style="margin-top:22px;">
+            <button class="btn secondary" type="button" id="printCurrentBtn">Print Current Form</button>
+            <button class="btn secondary" type="reset">Clear Form</button>
+            <button class="btn" type="submit">Save Guest Sheet as Lead</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="leadsTab" class="hidden">
+      <div class="card">
+        <div class="toolbar">
+          <div>
+            <h3 class="section-title">Lead Manager</h3>
+            <div class="section-caption">Open, edit, delete, print, and track every customer from one place.</div>
+          </div>
+          <div class="search-wrap">
+            <input class="input" id="searchInput" placeholder="Search name, phone, stock, source, vehicle..." style="min-width:280px;" />
+            <select id="statusFilter"><option value="">All Statuses</option><option>Fresh</option><option>Working</option><option>Appointment</option><option>Sold</option><option>Lost</option></select>
+            <select id="sourceFilter"><option value="">All Sources</option><option>Personal Lead</option><option>Dealer Lead</option><option>Phone Up</option><option>Fresh Up</option><option>Internet Lead</option><option>Repeat Customer</option><option>Referral</option><option>Walk-In</option><option>Other</option></select>
+          </div>
+        </div>
+        <div class="lead-list" id="leadList"></div>
+      </div>
+    </section>
+
+    <section id="tasksTab" class="hidden">
+      <div class="split">
+        <div class="card">
+          <h3 class="section-title">Upcoming Follow-Ups</h3>
+          <div id="taskList"></div>
+        </div>
+        <div class="card">
+          <h3 class="section-title">Reminder Rules</h3>
+          <div class="metric-list">
+            <div class="metric-item"><strong>Overdue</strong><div class="small">Follow-up date is before today and lead is not sold or lost.</div></div>
+            <div class="metric-item"><strong>Due Today</strong><div class="small">Perfect for call, text, or appointment confirmation.</div></div>
+            <div class="metric-item"><strong>Future</strong><div class="small">Scheduled next touches so nothing slips through the cracks.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="modal-backdrop" id="leadModalBackdrop">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <h2 class="modal-title" id="modalLeadName">Lead Profile</h2>
+        <div class="modal-sub" id="modalLeadSub">Full customer profile and editable deal view.</div>
+      </div>
+      <div class="inline-actions">
+        <button class="btn secondary" id="modalCloseBtn">Close</button>
+      </div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<div class="print-area" id="printArea"></div>
+
 <script>
-const STORAGE_KEY="sales_crm_guestsheet_leads_v2";let leads=JSON.parse(localStorage.getItem(STORAGE_KEY)||"[]");let selectedLeadId=leads[0]?.id||null;const tabs={dashboard:document.getElementById("dashboardTab"),guestSheet:document.getElementById("guestSheetTab"),leads:document.getElementById("leadsTab")};const pageTitle=document.getElementById("pageTitle");const pageSubtitle=document.getElementById("pageSubtitle");document.querySelectorAll(".nav button").forEach(btn=>btn.addEventListener("click",()=>setTab(btn.dataset.tab)));document.getElementById("newGuestBtn").addEventListener("click",()=>setTab("guestSheet"));document.getElementById("leadSearch").addEventListener("input",renderLeads);
-function setTab(tab){Object.entries(tabs).forEach(([key,section])=>section.classList.toggle("hidden",key!==tab));document.querySelectorAll(".nav button").forEach(btn=>btn.classList.toggle("active",btn.dataset.tab===tab));if(tab==="dashboard"){pageTitle.textContent="Dashboard";pageSubtitle.textContent="Track guest sheets, leads, and customer details in one place."}else if(tab==="guestSheet"){pageTitle.textContent="Guest Sheet / Needs Assessment";pageSubtitle.textContent="Enter the customer once and turn it into a lead automatically."}else{pageTitle.textContent="Leads";pageSubtitle.textContent="Open any customer profile, update status, and print the needs assessment."}}
-function saveLeads(){localStorage.setItem(STORAGE_KEY,JSON.stringify(leads))} function formatDate(dateStr){if(!dateStr)return"—";const d=new Date(dateStr);if(Number.isNaN(d.getTime()))return dateStr;return d.toLocaleDateString()} function leadStatusCounts(){const counts={Fresh:0,Working:0,Appointment:0,Sold:0,Lost:0};leads.forEach(l=>counts[l.status]=(counts[l.status]||0)+1);return counts}
-function renderDashboard(){const counts=leadStatusCounts();document.getElementById("kpiTotal").textContent=leads.length;document.getElementById("kpiFresh").textContent=counts.Fresh||0;document.getElementById("kpiAppt").textContent=counts.Appointment||0;document.getElementById("kpiSold").textContent=counts.Sold||0;const recent=[...leads].sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).slice(0,5);document.getElementById("recentLeads").innerHTML=recent.length?recent.map(l=>`<div class="lead-item"><div><div class="lead-name">${escapeHtml(l.firstName)} ${escapeHtml(l.lastName)}</div><div class="lead-meta">${escapeHtml(l.phone||"No phone")} • ${escapeHtml(l.leadSource||"Unknown source")}<br>${escapeHtml(l.vehicleInterest||"No vehicle entered")} • Budget: ${escapeHtml(l.budget||"—")}</div><span class="pill">${escapeHtml(l.status)}</span><span class="pill gray">${escapeHtml(l.timeline||"—")}</span></div><div><button class="btn secondary" onclick="openLead('${l.id}')">Open</button></div></div>`).join(""):`<div class="muted">No leads yet. Complete the guest sheet to create your first lead.</div>`;const pipeline=leadStatusCounts();const total=Math.max(leads.length,1);document.getElementById("pipelineStats").innerHTML=Object.entries(pipeline).map(([status,count])=>`<div class="stats-item"><strong>${status}</strong><div>${count} lead${count===1?"":"s"}</div><div class="small muted">${Math.round((count/total)*100)}% of pipeline</div></div>`).join("")}
-function renderLeads(){const q=document.getElementById("leadSearch").value.trim().toLowerCase();const filtered=[...leads].filter(l=>[l.firstName,l.lastName,l.phone,l.email,l.stockNumber,l.vehicleInterest,l.leadSource,l.colorPreference,l.budget].join(" ").toLowerCase().includes(q)).sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));document.getElementById("leadList").innerHTML=filtered.length?filtered.map(l=>`<div class="lead-item"><div onclick="openLead('${l.id}')" style="cursor:pointer"><div class="lead-name">${escapeHtml(l.firstName)} ${escapeHtml(l.lastName)}</div><div class="lead-meta">${escapeHtml(l.phone||"No phone")} • ${escapeHtml(l.email||"No email")}<br>Source: ${escapeHtml(l.leadSource||"—")} • Stock: ${escapeHtml(l.stockNumber||"—")}<br>Budget: ${escapeHtml(l.budget||"—")} • ${escapeHtml(l.paymentType||"—")}</div><span class="pill ${l.status==="Sold"?"green":""}">${escapeHtml(l.status)}</span></div><div style="display:grid;gap:8px;"><select class="status-select" onchange="updateLeadStatus('${l.id}', this.value)">${["Fresh","Working","Appointment","Sold","Lost"].map(s=>`<option ${l.status===s?"selected":""}>${s}</option>`).join("")}</select><button class="btn secondary" onclick="printLead('${l.id}')">Print</button></div></div>`).join(""):`<div class="muted">No matching leads found.</div>`;if(filtered.length&&(!selectedLeadId||!filtered.some(l=>l.id===selectedLeadId))){selectedLeadId=filtered[0].id}renderLeadDetail()}
-function renderLeadDetail(){const lead=leads.find(l=>l.id===selectedLeadId);const panel=document.getElementById("leadDetail");if(!lead){panel.innerHTML="Select a lead to see the full customer profile, needs assessment, budget, insurance info, and print options.";panel.className="detail-empty";return}panel.className="";panel.innerHTML=`<div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;"><div><div class="lead-name">${escapeHtml(lead.firstName)} ${escapeHtml(lead.lastName)}</div><div class="lead-meta">Entered ${formatDate(lead.createdAt)} • ${escapeHtml(lead.leadSource||"—")} • Status: ${escapeHtml(lead.status)}</div></div><div style="display:flex;gap:8px;flex-wrap:wrap;"><button class="btn secondary" onclick="printLead('${lead.id}')">Print Needs Assessment</button></div></div><div class="detail-grid">${detailRow("Phone",lead.phone)}${detailRow("Email",lead.email)}${detailRow("Birthday",formatDate(lead.birthday))}${detailRow("Driver License #",lead.driversLicense)}${detailRow("License State",lead.licenseState)}${detailRow("License Expiration",formatDate(lead.licenseExpiration))}${detailRow("Insurance Company",lead.insuranceCompany)}${detailRow("Policy Number",lead.insurancePolicy)}${detailRow("Insurance Agent",lead.insuranceAgent)}${detailRow("Budget",lead.budget)}${detailRow("Payment Goal",lead.paymentGoal)}${detailRow("Cash / Finance",lead.paymentType)}${detailRow("Down Payment",lead.downPayment)}${detailRow("Trade In",lead.tradeIn)}${detailRow("Current Vehicle",lead.currentVehicle)}${detailRow("Current Payment",lead.currentPayment)}${detailRow("Credit Situation",lead.creditSituation)}${detailRow("Vehicle Interest",lead.vehicleInterest)}${detailRow("Color Preference",lead.colorPreference)}${detailRow("Stock Number",lead.stockNumber)}${detailRow("Must-Have Features",lead.mustHaveFeatures)}${detailRow("Use Case",lead.useCase)}${detailRow("Timeline",lead.timeline)}${detailRow("Notes",lead.notes)}</div>`}
-function detailRow(label,value){return `<div class="detail-row"><div class="detail-label">${label}</div><div class="detail-value">${escapeHtml(value||"—")}</div></div>`} function escapeHtml(value){return String(value??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")} function openLead(id){selectedLeadId=id;setTab("leads");renderLeads()} window.openLead=openLead; function updateLeadStatus(id,status){leads=leads.map(l=>l.id===id?{...l,status}:l);saveLeads();renderDashboard();renderLeads()} window.updateLeadStatus=updateLeadStatus;
-document.getElementById("guestForm").addEventListener("submit",e=>{e.preventDefault();const formData=Object.fromEntries(new FormData(e.target).entries());const lead={id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),...formData,status:"Fresh",createdAt:new Date().toISOString()};leads.unshift(lead);selectedLeadId=lead.id;saveLeads();e.target.reset();renderDashboard();renderLeads();setTab("leads");alert("Guest sheet saved. The customer is now a lead in your CRM.")});
-function buildPrintHtml(lead){return `<div class="print-section"><div class="print-title">Guest Sheet / Needs Assessment</div><div class="print-sub">${escapeHtml(lead.firstName)} ${escapeHtml(lead.lastName)} • Created ${formatDate(lead.createdAt)} • Status: ${escapeHtml(lead.status)}</div><div class="print-grid">${printItem("Phone",lead.phone)}${printItem("Email",lead.email)}${printItem("Birthday",formatDate(lead.birthday))}${printItem("Driver License #",lead.driversLicense)}${printItem("License State",lead.licenseState)}${printItem("License Expiration",formatDate(lead.licenseExpiration))}${printItem("Insurance Company",lead.insuranceCompany)}${printItem("Insurance Policy #",lead.insurancePolicy)}${printItem("Insurance Agent",lead.insuranceAgent)}${printItem("Lead Source",lead.leadSource)}${printItem("Budget",lead.budget)}${printItem("Payment Goal",lead.paymentGoal)}${printItem("Cash / Finance",lead.paymentType)}${printItem("Down Payment",lead.downPayment)}${printItem("Trade In",lead.tradeIn)}${printItem("Vehicle Interest",lead.vehicleInterest)}${printItem("Color Preference",lead.colorPreference)}${printItem("Stock Number",lead.stockNumber)}${printItem("Must-Have Features",lead.mustHaveFeatures)}${printItem("Use Case",lead.useCase)}${printItem("Timeline",lead.timeline)}${printItem("Current Vehicle",lead.currentVehicle)}${printItem("Current Payment",lead.currentPayment)}${printItem("Credit Situation",lead.creditSituation)}</div></div><div class="print-section">${printItem("Notes",lead.notes)}</div>`}
-function printItem(label,value){return `<div class="print-item"><div class="print-label">${label}</div><div class="print-value">${escapeHtml(value||"—")}</div></div>`} function printLead(id){const lead=leads.find(l=>l.id===id);if(!lead)return;const wrap=document.getElementById("printWrap");wrap.innerHTML=buildPrintHtml(lead);window.print()} window.printLead=printLead;
-document.getElementById("printCurrentGuestSheet").addEventListener("click",()=>{const formData=Object.fromEntries(new FormData(document.getElementById("guestForm")).entries());const tempLead={...formData,firstName:formData.firstName||"",lastName:formData.lastName||"",status:"Unsaved",createdAt:new Date().toISOString()};const wrap=document.getElementById("printWrap");wrap.innerHTML=buildPrintHtml(tempLead);window.print()});
-document.getElementById("exportBtn").addEventListener("click",()=>{const blob=new Blob([JSON.stringify(leads,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="crm-leads-export.json";a.click();URL.revokeObjectURL(url)});
-renderDashboard();renderLeads();setTab("dashboard");
+const STORAGE_KEY = 'luxury_sales_crm_v1';
+let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"leads":[]}');
+if(!state.leads) state = { leads: [] };
+let currentTab = 'dashboard';
+let selectedLeadId = null;
+
+const tabs = {
+  dashboard: document.getElementById('dashboardTab'),
+  guest: document.getElementById('guestTab'),
+  leads: document.getElementById('leadsTab'),
+  tasks: document.getElementById('tasksTab')
+};
+
+function persist(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+function escapeHtml(v){ return String(v ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;'); }
+function fmtDate(dateStr){ if(!dateStr) return '—'; const d = new Date(dateStr); return Number.isNaN(d.getTime()) ? dateStr : d.toLocaleDateString(); }
+function todayISO(){ return new Date().toISOString().slice(0,10); }
+function getLead(id){ return state.leads.find(l => l.id === id); }
+function statusClass(status){ return status === 'Sold' ? 'green' : status === 'Appointment' ? 'blue' : status === 'Lost' ? 'red' : status === 'Working' ? 'orange' : 'gray'; }
+function setTab(tab){
+  currentTab = tab;
+  Object.entries(tabs).forEach(([key, el]) => el.classList.toggle('hidden', key !== tab));
+  document.querySelectorAll('.nav button').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
+  const titleMap = {
+    dashboard:['Dashboard','See your numbers, lead sources, review count, and follow-up pressure in one place.'],
+    guest:['Guest Sheet','Take a clean needs assessment and convert it to a lead automatically.'],
+    leads:['Leads','Search, filter, open, edit, print, and manage every customer.'],
+    tasks:['Follow-Ups','Stay on top of overdue, due today, and upcoming customer touches.']
+  };
+  document.getElementById('pageTitle').textContent = titleMap[tab][0];
+  document.getElementById('pageSubtitle').textContent = titleMap[tab][1];
+  renderAll();
+}
+window.setTab = setTab;
+
+document.querySelectorAll('.nav button').forEach(btn => btn.addEventListener('click', () => setTab(btn.dataset.tab)));
+document.getElementById('newGuestBtn').addEventListener('click', () => setTab('guest'));
+document.getElementById('searchInput').addEventListener('input', renderLeads);
+document.getElementById('statusFilter').addEventListener('change', renderLeads);
+document.getElementById('sourceFilter').addEventListener('change', renderLeads);
+document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+document.getElementById('leadModalBackdrop').addEventListener('click', (e) => { if(e.target.id === 'leadModalBackdrop') closeModal(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+document.getElementById('exportBtn').addEventListener('click', () => {
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'sales-crm-export.json';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById('seedDemoBtn').addEventListener('click', () => {
+  if(state.leads.length && !confirm('Demo data will be added to your current leads. Continue?')) return;
+  const today = todayISO();
+  const demo = [
+    {firstName:'Jaylen',lastName:'Carter',phone:'404-555-1901',email:'jaylen@example.com',salesperson:'Mekiah',date:today,leadSource:'Personal Lead',timeline:'Today',vehicleInterest:'2023 BMW 540i',stockNumber:'B54012',colorPreference:'Black',mustHaveFeatures:'Red interior, sunroof',budget:'$725/mo',paymentGoal:'$700/mo',paymentType:'Finance',downPayment:'$4,000',tradeIn:'Yes',currentVehicle:'2018 Charger',currentPayment:'$510/mo',creditSituation:'Good',useCase:'Daily + image car',objection:'Wants lower payment',followUpDate:today,followUpMethod:'Call',appointmentDate:today,googleReview:'No',notes:'Hot on this unit. Wants numbers fast.',driversLicense:'C1234567',licenseState:'GA',licenseExpiration:'2028-10-01',insuranceCompany:'State Farm',insurancePolicy:'SF33291',insuranceAgent:'Jordan',birthday:'1999-08-11',address:'Atlanta, GA',status:'Working',createdAt:new Date().toISOString()},
+    {firstName:'Tiana',lastName:'Brooks',phone:'678-555-2241',email:'tiana@example.com',salesperson:'Mekiah',date:today,leadSource:'Internet Lead',timeline:'This Week',vehicleInterest:'2022 Tahoe RST',stockNumber:'T22091',colorPreference:'White',mustHaveFeatures:'Captain chairs',budget:'$850/mo',paymentGoal:'$820/mo',paymentType:'Finance',downPayment:'$5,000',tradeIn:'No',currentVehicle:'2015 Altima',currentPayment:'$0',creditSituation:'Average',useCase:'Family SUV',objection:'Shopping two stores',followUpDate:today,followUpMethod:'Text',appointmentDate:'',googleReview:'Yes',notes:'Needs third row immediately.',driversLicense:'D883912',licenseState:'GA',licenseExpiration:'2027-06-20',insuranceCompany:'GEICO',insurancePolicy:'GE8821',insuranceAgent:'Alicia',birthday:'1996-05-02',address:'Lawrenceville, GA',status:'Sold',createdAt:new Date(Date.now()-86400000).toISOString()},
+    {firstName:'Marcus',lastName:'Hill',phone:'770-555-8890',email:'',salesperson:'Mekiah',date:today,leadSource:'Fresh Up',timeline:'30-60 Days',vehicleInterest:'F-150 XLT',stockNumber:'F15077',colorPreference:'Gray',mustHaveFeatures:'Crew cab',budget:'$650/mo',paymentGoal:'$620/mo',paymentType:'Lease',downPayment:'$2,500',tradeIn:'Yes',currentVehicle:'2016 Silverado',currentPayment:'$430/mo',creditSituation:'Challenged',useCase:'Work truck',objection:'Needs approval',followUpDate:new Date(Date.now()+86400000).toISOString().slice(0,10),followUpMethod:'Call',appointmentDate:'',googleReview:'No',notes:'Needs approval path and trade value.',driversLicense:'M443219',licenseState:'GA',licenseExpiration:'2026-11-18',insuranceCompany:'Progressive',insurancePolicy:'PR1100',insuranceAgent:'Kim',birthday:'1992-12-19',address:'Buford, GA',status:'Fresh',createdAt:new Date(Date.now()-172800000).toISOString()}
+  ].map(x => ({...x, id: uid()}));
+  state.leads = [...demo, ...state.leads];
+  persist();
+  renderAll();
+});
+
+function uid(){ return (crypto.randomUUID ? crypto.randomUUID() : String(Date.now() + Math.random())); }
+
+function leadCounts(){
+  const counts = { Fresh:0, Working:0, Appointment:0, Sold:0, Lost:0 };
+  state.leads.forEach(l => counts[l.status || 'Fresh'] = (counts[l.status || 'Fresh'] || 0) + 1);
+  return counts;
+}
+
+function sourceBreakdown(){
+  const map = {};
+  state.leads.forEach(l => {
+    const src = l.leadSource || 'Unknown';
+    if(!map[src]) map[src] = { total:0, sold:0, reviews:0 };
+    map[src].total += 1;
+    if(l.status === 'Sold') map[src].sold += 1;
+    if(l.googleReview === 'Yes') map[src].reviews += 1;
+  });
+  return map;
+}
+
+function filteredLeads(){
+  const q = (document.getElementById('searchInput')?.value || '').trim().toLowerCase();
+  const status = document.getElementById('statusFilter')?.value || '';
+  const source = document.getElementById('sourceFilter')?.value || '';
+  return [...state.leads].filter(l => {
+    const hay = [l.firstName,l.lastName,l.phone,l.email,l.stockNumber,l.vehicleInterest,l.leadSource,l.colorPreference,l.budget,l.salesperson].join(' ').toLowerCase();
+    const hitQ = !q || hay.includes(q);
+    const hitStatus = !status || (l.status === status);
+    const hitSource = !source || (l.leadSource === source);
+    return hitQ && hitStatus && hitSource;
+  }).sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+}
+
+function renderDashboard(){
+  const counts = leadCounts();
+  const total = state.leads.length;
+  const sold = counts.Sold || 0;
+  const reviews = state.leads.filter(l => l.googleReview === 'Yes').length;
+  document.getElementById('kpiTotal').textContent = total;
+  document.getElementById('kpiSold').textContent = sold;
+  document.getElementById('kpiCloseRate').textContent = total ? Math.round((sold/total)*100) + '%' : '0%';
+  document.getElementById('kpiReviews').textContent = reviews;
+
+  const recent = [...state.leads].sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0,5);
+  document.getElementById('recentLeads').innerHTML = recent.length ? recent.map(l => `
+    <div class="lead-card" onclick="openLead('${l.id}')">
+      <div>
+        <div class="lead-name">${escapeHtml(l.firstName)} ${escapeHtml(l.lastName)}</div>
+        <div class="lead-meta">${escapeHtml(l.phone || 'No phone')} • ${escapeHtml(l.vehicleInterest || 'No vehicle selected')}<br>Budget: ${escapeHtml(l.budget || '—')} • Stock: ${escapeHtml(l.stockNumber || '—')} • ${escapeHtml(l.leadSource || '—')}</div>
+        <div class="pills">
+          <span class="pill ${statusClass(l.status || 'Fresh')}">${escapeHtml(l.status || 'Fresh')}</span>
+          <span class="pill gray">${escapeHtml(l.timeline || '—')}</span>
+          <span class="pill ${l.googleReview === 'Yes' ? 'green' : 'gray'}">Review: ${escapeHtml(l.googleReview || 'No')}</span>
+        </div>
+      </div>
+      <div class="inline-actions"><button class="btn secondary" type="button" onclick="event.stopPropagation();openLead('${l.id}')">Open</button></div>
+    </div>`).join('') : `<div class="empty">No leads yet. Complete your first guest sheet to populate the pipeline.</div>`;
+
+  const pipeline = leadCounts();
+  document.getElementById('pipelineSnapshot').innerHTML = Object.entries(pipeline).map(([status, count]) => `
+    <div class="metric-item">
+      <strong>${status}</strong>
+      <div>${count} lead${count === 1 ? '' : 's'}</div>
+      <div class="small">${total ? Math.round((count/total)*100) : 0}% of current pipeline</div>
+    </div>`).join('');
+
+  const src = sourceBreakdown();
+  const srcRows = Object.entries(src).sort((a,b) => b[1].total - a[1].total);
+  document.getElementById('sourcePerformance').innerHTML = srcRows.length ? `
+    <table class="table">
+      <thead><tr><th>Source</th><th>Total</th><th>Sold</th><th>Close %</th></tr></thead>
+      <tbody>
+        ${srcRows.map(([name, stats]) => `<tr><td>${escapeHtml(name)}</td><td>${stats.total}</td><td>${stats.sold}</td><td>${stats.total ? Math.round((stats.sold / stats.total) * 100) : 0}%</td></tr>`).join('')}
+      </tbody>
+    </table>` : `<div class="empty">No source data yet.</div>`;
+}
+
+function renderLeads(){
+  const leads = filteredLeads();
+  document.getElementById('leadList').innerHTML = leads.length ? leads.map(l => `
+    <div class="lead-card" onclick="openLead('${l.id}')">
+      <div>
+        <div class="lead-name">${escapeHtml(l.firstName)} ${escapeHtml(l.lastName)}</div>
+        <div class="lead-meta">${escapeHtml(l.phone || 'No phone')} • ${escapeHtml(l.email || 'No email')}<br>${escapeHtml(l.vehicleInterest || 'No vehicle entered')} • Stock ${escapeHtml(l.stockNumber || '—')} • ${escapeHtml(l.paymentType || '—')}<br>Budget ${escapeHtml(l.budget || '—')} • Follow-up ${escapeHtml(fmtDate(l.followUpDate))}</div>
+        <div class="pills">
+          <span class="pill ${statusClass(l.status || 'Fresh')}">${escapeHtml(l.status || 'Fresh')}</span>
+          <span class="pill blue">${escapeHtml(l.leadSource || '—')}</span>
+          <span class="pill ${l.googleReview === 'Yes' ? 'green' : 'gray'}">Review: ${escapeHtml(l.googleReview || 'No')}</span>
+        </div>
+      </div>
+      <div class="inline-actions">
+        <button class="btn secondary" type="button" onclick="event.stopPropagation();openLead('${l.id}')">Open</button>
+      </div>
+    </div>`).join('') : `<div class="empty">No leads match your filters.</div>`;
+}
+
+function followUpBucket(dateStr, status){
+  if(!dateStr || ['Sold','Lost'].includes(status)) return null;
+  const today = todayISO();
+  if(dateStr < today) return 'Overdue';
+  if(dateStr === today) return 'Due Today';
+  return 'Upcoming';
+}
+
+function renderTasks(){
+  const rows = [...state.leads]
+    .map(l => ({ lead:l, bucket:followUpBucket(l.followUpDate, l.status || 'Fresh') }))
+    .filter(x => x.bucket)
+    .sort((a,b) => (a.lead.followUpDate || '').localeCompare(b.lead.followUpDate || ''));
+  document.getElementById('taskList').innerHTML = rows.length ? rows.map(({lead,bucket}) => `
+    <div class="lead-card" onclick="openLead('${lead.id}')">
+      <div>
+        <div class="lead-name">${escapeHtml(lead.firstName)} ${escapeHtml(lead.lastName)}</div>
+        <div class="lead-meta">${escapeHtml(bucket)} • ${escapeHtml(fmtDate(lead.followUpDate))} • ${escapeHtml(lead.followUpMethod || 'No method')}<br>${escapeHtml(lead.phone || 'No phone')} • ${escapeHtml(lead.vehicleInterest || 'No vehicle entered')}</div>
+        <div class="pills">
+          <span class="pill ${bucket === 'Overdue' ? 'red' : bucket === 'Due Today' ? 'orange' : 'blue'}">${escapeHtml(bucket)}</span>
+          <span class="pill ${statusClass(lead.status || 'Fresh')}">${escapeHtml(lead.status || 'Fresh')}</span>
+        </div>
+      </div>
+      <div class="inline-actions"><button class="btn secondary" type="button" onclick="event.stopPropagation();openLead('${lead.id}')">Open</button></div>
+    </div>`).join('') : `<div class="empty">No follow-up tasks are currently scheduled.</div>`;
+}
+
+function renderAll(){ renderDashboard(); renderLeads(); renderTasks(); }
+
+function formToLead(form){
+  const data = Object.fromEntries(new FormData(form).entries());
+  return {
+    id: uid(),
+    ...data,
+    status: 'Fresh',
+    date: data.date || todayISO(),
+    salesperson: data.salesperson || 'Mekiah',
+    googleReview: data.googleReview || 'No',
+    createdAt: new Date().toISOString()
+  };
+}
+
+document.getElementById('guestForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const lead = formToLead(e.target);
+  state.leads.unshift(lead);
+  persist();
+  e.target.reset();
+  selectedLeadId = lead.id;
+  renderAll();
+  openLead(lead.id);
+});
+
+document.getElementById('printCurrentBtn').addEventListener('click', () => {
+  const data = Object.fromEntries(new FormData(document.getElementById('guestForm')).entries());
+  const temp = { ...data, firstName:data.firstName || '', lastName:data.lastName || '', salesperson:data.salesperson || 'Mekiah', date:data.date || todayISO(), status:'Unsaved', createdAt:new Date().toISOString() };
+  printLead(temp);
+});
+
+function openLead(id){
+  selectedLeadId = id;
+  const lead = getLead(id);
+  if(!lead) return;
+  document.getElementById('modalLeadName').textContent = `${lead.firstName || ''} ${lead.lastName || ''}`.trim() || 'Lead Profile';
+  document.getElementById('modalLeadSub').textContent = `${lead.vehicleInterest || 'No vehicle selected'} • ${lead.leadSource || '—'} • Entered ${fmtDate(lead.createdAt)}`;
+  document.getElementById('modalBody').innerHTML = modalTemplate(lead);
+  document.getElementById('leadModalBackdrop').classList.add('show');
+  document.body.classList.add('modal-open');
+}
+window.openLead = openLead;
+
+function closeModal(){
+  document.getElementById('leadModalBackdrop').classList.remove('show');
+  document.body.classList.remove('modal-open');
+}
+
+function modalTemplate(lead){
+  return `
+    <div class="inline-actions" style="margin-bottom:18px;">
+      <button class="btn" onclick="printById('${lead.id}')">Print Lead</button>
+      <button class="btn secondary" onclick="toggleEdit('${lead.id}')">Edit Lead</button>
+      <button class="btn secondary" onclick="duplicateLead('${lead.id}')">Duplicate</button>
+      <button class="btn danger" onclick="deleteLead('${lead.id}')">Delete</button>
+    </div>
+
+    <div id="leadView_${lead.id}">
+      <div class="profile-grid">
+        <div class="profile-block">
+          <h4>Customer</h4>
+          <div class="detail-grid">
+            ${detailRow('Salesperson', lead.salesperson)}
+            ${detailRow('Date', fmtDate(lead.date))}
+            ${detailRow('Phone', lead.phone)}
+            ${detailRow('Email', lead.email)}
+            ${detailRow('Birthday', fmtDate(lead.birthday))}
+            ${detailRow('Address', lead.address)}
+          </div>
+        </div>
+        <div class="profile-block">
+          <h4>Vehicle / Budget</h4>
+          <div class="detail-grid">
+            ${detailRow('Vehicle Interest', lead.vehicleInterest)}
+            ${detailRow('Stock Number', lead.stockNumber)}
+            ${detailRow('Color Preference', lead.colorPreference)}
+            ${detailRow('Must-Have Features', lead.mustHaveFeatures)}
+            ${detailRow('Budget', lead.budget)}
+            ${detailRow('Payment Goal', lead.paymentGoal)}
+            ${detailRow('Cash / Finance / Lease', lead.paymentType)}
+            ${detailRow('Down Payment', lead.downPayment)}
+            ${detailRow('Trade In', lead.tradeIn)}
+            ${detailRow('Current Vehicle', lead.currentVehicle)}
+            ${detailRow('Current Payment', lead.currentPayment)}
+            ${detailRow('Credit Situation', lead.creditSituation)}
+          </div>
+        </div>
+        <div class="profile-block">
+          <h4>Pipeline / Follow-Up</h4>
+          <div class="detail-grid">
+            ${detailRow('Status', `<span class="pill ${statusClass(lead.status || 'Fresh')}">${escapeHtml(lead.status || 'Fresh')}</span>`, true)}
+            ${detailRow('Lead Source', lead.leadSource)}
+            ${detailRow('Timeline', lead.timeline)}
+            ${detailRow('Follow-Up Date', fmtDate(lead.followUpDate))}
+            ${detailRow('Follow-Up Method', lead.followUpMethod)}
+            ${detailRow('Appointment Date', fmtDate(lead.appointmentDate))}
+            ${detailRow('Google Review', lead.googleReview)}
+            ${detailRow('Objection / Concern', lead.objection)}
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:18px;padding:18px;box-shadow:none;">
+        <h4 style="margin:0 0 12px;font-size:15px;">License & Insurance</h4>
+        <div class="detail-grid">
+          ${detailRow('Driver License #', lead.driversLicense)}
+          ${detailRow('License State', lead.licenseState)}
+          ${detailRow('License Expiration', fmtDate(lead.licenseExpiration))}
+          ${detailRow('Insurance Company', lead.insuranceCompany)}
+          ${detailRow('Insurance Policy #', lead.insurancePolicy)}
+          ${detailRow('Insurance Agent / Contact', lead.insuranceAgent)}
+          ${detailRow('Use Case', lead.useCase)}
+          ${detailRow('Notes', lead.notes)}
+        </div>
+      </div>
+      <div class="waiver" style="margin-top:18px;">Customer is responsible for all damages to the vehicle regardless of fault. and s/he is advised to contact his/her own insurance agent or broker to ensure insurance coverage<br><br>I hereby acknowledge that I have read and understand the preceding demo conditions, and agree to abide them</div>
+      <div class="signature-line">Customer Signature</div>
+    </div>
+
+    <div id="leadEdit_${lead.id}" class="hidden">
+      <form onsubmit="saveLeadEdit(event,'${lead.id}')">
+        <div class="form-grid four">
+          ${inputField('Salesperson','salesperson',lead.salesperson)}
+          ${inputField('Date','date',lead.date,'date')}
+          ${selectField('Status','status',lead.status || 'Fresh',['Fresh','Working','Appointment','Sold','Lost'])}
+          ${selectField('Google Review','googleReview',lead.googleReview || 'No',['No','Yes'])}
+        </div>
+        <div class="form-grid four" style="margin-top:14px;">
+          ${inputField('First Name','firstName',lead.firstName)}
+          ${inputField('Last Name','lastName',lead.lastName)}
+          ${inputField('Phone','phone',lead.phone)}
+          ${inputField('Email','email',lead.email,'email')}
+        </div>
+        <div class="form-grid four" style="margin-top:14px;">
+          ${inputField('Vehicle Interest','vehicleInterest',lead.vehicleInterest)}
+          ${inputField('Stock Number','stockNumber',lead.stockNumber)}
+          ${inputField('Color Preference','colorPreference',lead.colorPreference)}
+          ${inputField('Budget','budget',lead.budget)}
+        </div>
+        <div class="form-grid four" style="margin-top:14px;">
+          ${inputField('Payment Goal','paymentGoal',lead.paymentGoal)}
+          ${selectField('Payment Type','paymentType',lead.paymentType || 'Finance',['Finance','Cash','Lease','Undecided'])}
+          ${inputField('Down Payment','downPayment',lead.downPayment)}
+          ${selectField('Trade In','tradeIn',lead.tradeIn || 'No',['No','Yes'])}
+        </div>
+        <div class="form-grid four" style="margin-top:14px;">
+          ${inputField('Follow-Up Date','followUpDate',lead.followUpDate,'date')}
+          ${selectField('Follow-Up Method','followUpMethod',lead.followUpMethod || 'Call',['Call','Text','Email','In Person'])}
+          ${inputField('Appointment Date','appointmentDate',lead.appointmentDate,'date')}
+          ${selectField('Timeline','timeline',lead.timeline || 'Today',['Today','This Week','This Month','30-60 Days','Just Shopping'])}
+        </div>
+        <div style="margin-top:14px;">
+          <label class="label">Notes</label>
+          <textarea name="notes">${escapeHtml(lead.notes || '')}</textarea>
+        </div>
+        <div class="inline-actions" style="margin-top:16px;">
+          <button class="btn" type="submit">Save Changes</button>
+          <button class="btn secondary" type="button" onclick="toggleEdit('${lead.id}')">Cancel</button>
+        </div>
+      </form>
+    </div>`;
+}
+
+function detailRow(label, value, raw = false){
+  return `<div class="detail-row"><div class="detail-label">${label}</div><div class="detail-value">${raw ? value : escapeHtml(value || '—')}</div></div>`;
+}
+function inputField(label,name,value='',type='text'){
+  return `<div><label class="label">${label}</label><input class="input" name="${name}" type="${type}" value="${escapeHtml(value || '')}" /></div>`;
+}
+function selectField(label,name,current,options){
+  return `<div><label class="label">${label}</label><select name="${name}">${options.map(opt => `<option ${opt === current ? 'selected' : ''}>${opt}</option>`).join('')}</select></div>`;
+}
+
+function toggleEdit(id){
+  const view = document.getElementById(`leadView_${id}`);
+  const edit = document.getElementById(`leadEdit_${id}`);
+  if(view && edit){ view.classList.toggle('hidden'); edit.classList.toggle('hidden'); }
+}
+window.toggleEdit = toggleEdit;
+
+function saveLeadEdit(e,id){
+  e.preventDefault();
+  const updates = Object.fromEntries(new FormData(e.target).entries());
+  state.leads = state.leads.map(l => l.id === id ? { ...l, ...updates } : l);
+  persist();
+  renderAll();
+  openLead(id);
+}
+window.saveLeadEdit = saveLeadEdit;
+
+function deleteLead(id){
+  const lead = getLead(id);
+  if(!lead) return;
+  if(!confirm(`Delete ${lead.firstName || ''} ${lead.lastName || ''}?`)) return;
+  state.leads = state.leads.filter(l => l.id !== id);
+  persist();
+  closeModal();
+  renderAll();
+}
+window.deleteLead = deleteLead;
+
+function duplicateLead(id){
+  const lead = getLead(id);
+  if(!lead) return;
+  const copy = { ...lead, id: uid(), status:'Fresh', createdAt:new Date().toISOString(), firstName: lead.firstName, lastName: lead.lastName + ' Copy' };
+  state.leads.unshift(copy);
+  persist();
+  renderAll();
+  openLead(copy.id);
+}
+window.duplicateLead = duplicateLead;
+
+function printById(id){ const lead = getLead(id); if(lead) printLead(lead); }
+window.printById = printById;
+
+function printLead(lead){
+  document.getElementById('printArea').innerHTML = `
+    <div class="print-head">
+      <h1>Guest Sheet / Needs Assessment</h1>
+      <div class="print-sub">${escapeHtml((lead.firstName || '') + ' ' + (lead.lastName || ''))} • Salesperson: ${escapeHtml(lead.salesperson || 'Mekiah')} • Date: ${escapeHtml(fmtDate(lead.date || lead.createdAt))}</div>
+    </div>
+    <div class="print-grid">
+      ${printItem('Phone', lead.phone)}
+      ${printItem('Email', lead.email)}
+      ${printItem('Birthday', fmtDate(lead.birthday))}
+      ${printItem('Address', lead.address)}
+      ${printItem('Driver License #', lead.driversLicense)}
+      ${printItem('License State', lead.licenseState)}
+      ${printItem('License Expiration', fmtDate(lead.licenseExpiration))}
+      ${printItem('Insurance Company', lead.insuranceCompany)}
+      ${printItem('Insurance Policy Number', lead.insurancePolicy)}
+      ${printItem('Insurance Agent / Contact', lead.insuranceAgent)}
+      ${printItem('Lead Source', lead.leadSource)}
+      ${printItem('Timeline', lead.timeline)}
+      ${printItem('Vehicle Interest', lead.vehicleInterest)}
+      ${printItem('Stock Number', lead.stockNumber)}
+      ${printItem('Color Preference', lead.colorPreference)}
+      ${printItem('Must-Have Features', lead.mustHaveFeatures)}
+      ${printItem('Budget', lead.budget)}
+      ${printItem('Payment Goal', lead.paymentGoal)}
+      ${printItem('Cash / Finance / Lease', lead.paymentType)}
+      ${printItem('Down Payment', lead.downPayment)}
+      ${printItem('Trade In', lead.tradeIn)}
+      ${printItem('Current Vehicle', lead.currentVehicle)}
+      ${printItem('Current Payment', lead.currentPayment)}
+      ${printItem('Credit Situation', lead.creditSituation)}
+      ${printItem('Follow-Up Date', fmtDate(lead.followUpDate))}
+      ${printItem('Follow-Up Method', lead.followUpMethod)}
+      ${printItem('Appointment Date', fmtDate(lead.appointmentDate))}
+      ${printItem('Google Review', lead.googleReview)}
+      ${printItem('Use Case', lead.useCase)}
+      ${printItem('Objection / Concern', lead.objection)}
+      ${printItem('Notes', lead.notes)}
+    </div>
+    <div class="print-waiver">Customer is responsible for all damages to the vehicle regardless of fault. and s/he is advised to contact his/her own insurance agent or broker to ensure insurance coverage<br><br>I hereby acknowledge that I have read and understand the preceding demo conditions, and agree to abide them</div>
+    <div class="print-signature">Customer Signature</div>`;
+  window.print();
+}
+
+function printItem(label, value){
+  return `<div class="print-item"><div class="print-label">${label}</div><div class="print-value">${escapeHtml(value || '—')}</div></div>`;
+}
+
+renderAll();
+setTab('dashboard');
 </script>
 </body>
 </html>
