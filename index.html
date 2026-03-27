@@ -72,8 +72,8 @@ body.modal-open{overflow:hidden}
   </aside>
   <main class="main">
     <div class="topbar">
-      <div><h1 class="title" id="pageTitle">Dashboard</h1><div class="subtitle" id="pageSubtitle">See your numbers, lead sources, review count, gross tracking, and follow-up pressure in one place.</div></div>
-      <div class="actions"><button class="btn secondary" id="exportBtn">Export Data</button><button class="btn soft" id="seedDemoBtn">Load Demo Data</button><button class="btn" id="newGuestBtn">New Guest Sheet</button></div>
+      <div><h1 class="title" id="pageTitle">Dashboard</h1><div class="subtitle" id="pageSubtitle">See your numbers, lead sources, review count, gross tracking, and follow-up pressure in one place.</div><div class="subtitle" id="saveStatus" style="margin-top:8px;">Drive save file: not connected</div></div>
+      <div class="actions"><button class="btn secondary" id="loadDriveBtn">Load from Drive</button><button class="btn secondary" id="saveDriveBtn">Save to Drive</button><button class="btn secondary" id="exportBtn">Export Data</button><button class="btn soft" id="seedDemoBtn">Load Demo Data</button><button class="btn" id="newGuestBtn">New Guest Sheet</button></div>
     </div>
 
     <section id="dashboardTab">
@@ -189,6 +189,7 @@ body.modal-open{overflow:hidden}
 
 <script>
 const STORAGE_KEY = 'luxury_sales_crm_v2';
+const FILE_HANDLE_KEY = 'luxury_sales_crm_file_handle_supported';
 let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{"leads":[]}'); if(!state.leads) state = { leads: [] };
 const tabs = { dashboard:document.getElementById('dashboardTab'), guest:document.getElementById('guestTab'), addLead:document.getElementById('addLeadTab'), leads:document.getElementById('leadsTab'), tasks:document.getElementById('tasksTab'), commission:document.getElementById('commissionTab') };
 function persist(){localStorage.setItem(STORAGE_KEY, JSON.stringify(state));}
