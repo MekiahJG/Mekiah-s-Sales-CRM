@@ -150,6 +150,7 @@ textarea{min-height:92px;resize:vertical}
       <button data-tab="addLead">Add Lead</button>
       <button data-tab="leads">Leads</button>
       <button data-tab="tasks">Follow-Ups</button>
+      <button data-tab="commission">Commission</button>
     </div>
     <div class="side-note">
       <div style="font-weight:900;margin-bottom:6px;">Built to sell faster</div>
@@ -226,7 +227,7 @@ textarea{min-height:92px;resize:vertical}
               <div><label class="label">Lead Source</label><select name="leadSource"><option>Personal Lead</option><option>Dealer Lead</option><option>Phone Up</option><option>Fresh Up</option><option>Internet Lead</option><option>Repeat Customer</option><option>Referral</option><option>Walk-In</option><option>Other</option></select></div>
               <div><label class="label">Timeline</label><select name="timeline"><option>Today</option><option>This Week</option><option>This Month</option><option>30-60 Days</option><option>Just Shopping</option></select></div>
               <div><label class="label">Phone</label><input class="input" name="phone" /></div>
-              <div><label class="label">Gross</label><input class="input" name="gross" placeholder="Front or total gross" /></div>
+              
             </div>
           </div>
 
@@ -362,6 +363,37 @@ textarea{min-height:92px;resize:vertical}
         </div>
       </div>
     </section>
+
+    <section id="commissionTab" class="hidden">
+      <div class="grid kpis">
+        <div class="kpi"><div class="kpi-label">Units Sold</div><div class="kpi-value" id="commUnits">0</div><div class="kpi-sub">Sold leads in the CRM</div></div>
+        <div class="kpi"><div class="kpi-label">Average Gross</div><div class="kpi-value" id="commAvgGross">$0</div><div class="kpi-sub">Average gross on sold deals</div></div>
+        <div class="kpi"><div class="kpi-label">Estimated Commission</div><div class="kpi-value" id="commEstimate">$0</div><div class="kpi-sub">Before survey money</div></div>
+        <div class="kpi"><div class="kpi-label">Net After Draw</div><div class="kpi-value" id="commAfterDraw">$0</div><div class="kpi-sub">Commission + surveys - draw</div></div>
+      </div>
+
+      <div class="split">
+        <div class="card">
+          <h3 class="section-title">Commission Breakdown</h3>
+          <div id="commissionBreakdown"></div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <h3 class="section-title">Survey Money</h3>
+            <div id="surveyBreakdown"></div>
+          </div>
+          <div class="card">
+            <h3 class="section-title">Pay Plan Tiers</h3>
+            <div class="metric-list">
+              <div class="metric-item"><strong>Under 10.5 cars</strong><div class="small">$350 minis or 17% of front + back gross after $995 pack and $2,000 cap per deal</div></div>
+              <div class="metric-item"><strong>10.5 to 15.49 cars</strong><div class="small">$400 minis or 18% of front + back gross after $995 pack and $2,000 cap per deal</div></div>
+              <div class="metric-item"><strong>15.5 to 20.49 cars</strong><div class="small">$450 minis or 19% of front + back gross after $995 pack and $2,000 cap per deal</div></div>
+              <div class="metric-item"><strong>20.5+ cars</strong><div class="small">$500 minis or 20% of front + back gross after $995 pack and $2,000 cap per deal</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 </div>
 
@@ -394,7 +426,8 @@ const tabs = {
   guest: document.getElementById('guestTab'),
   addLead: document.getElementById('addLeadTab'),
   leads: document.getElementById('leadsTab'),
-  tasks: document.getElementById('tasksTab')
+  tasks: document.getElementById('tasksTab'),
+  commission: document.getElementById('commissionTab')
 };
 
 function persist(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
@@ -420,7 +453,8 @@ function setTab(tab){
     guest:['Guest Sheet','Use the refined one-page guest sheet and convert it to a lead automatically.'],
     addLead:['Add Lead','Create a lead quickly without using the full guest sheet.'],
     leads:['Leads','Search, filter, open, edit, print, and manage every customer.'],
-    tasks:['Follow-Ups','Stay on top of overdue, due today, and upcoming customer touches.']
+    tasks:['Follow-Ups','Stay on top of overdue, due today, and upcoming customer touches.'],
+    commission:['Commission','Track average gross, estimated commission, survey money, and net after draw.']
   };
   document.getElementById('pageTitle').textContent = titleMap[tab][0];
   document.getElementById('pageSubtitle').textContent = titleMap[tab][1];
@@ -564,7 +598,78 @@ function renderTasks(){
     </div>`).join('') : `<div class="empty">No follow-up tasks are currently scheduled.</div>`;
 }
 
-function renderAll(){ renderDashboard(); renderLeads(); renderTasks(); }
+function commissionTier(units){
+  if(units >= 20.5) return { mini:500, percent:0.20 };
+  if(units >= 15.5) return { mini:450, percent:0.19 };
+  if(units >= 10.5) return { mini:400, percent:0.18 };
+  return { mini:350, percent:0.17 };
+}
+
+function commissionData(){
+  const soldDeals = state.leads.filter(l => l.status === 'Sold');
+  const units = soldDeals.length;
+  const tier = commissionTier(units);
+  let totalCommission = 0;
+  let totalGross = 0;
+  let surveyCount = 0;
+
+  soldDeals.forEach(lead => {
+    const gross = parseMoney(lead.gross);
+    totalGross += gross;
+    const commissionableGross = Math.max(0, gross - 995);
+    const percentCommission = Math.min(2000, commissionableGross * tier.percent);
+    const miniCommission = tier.mini;
+    totalCommission += Math.max(miniCommission, percentCommission);
+    if(lead.googleReview === 'Yes') surveyCount += 1;
+  });
+
+  const averageGross = units ? totalGross / units : 0;
+  const surveyMoney = surveyCount * 25;
+  const draw = 2000;
+  const afterDraw = totalCommission + surveyMoney - draw;
+
+  return { soldDeals, units, tier, totalCommission, totalGross, averageGross, surveyCount, surveyMoney, draw, afterDraw };
+}
+
+function renderCommission(){
+  const data = commissionData();
+  document.getElementById('commUnits').textContent = data.units;
+  document.getElementById('commAvgGross').textContent = money(Math.round(data.averageGross));
+  document.getElementById('commEstimate').textContent = money(Math.round(data.totalCommission));
+  document.getElementById('commAfterDraw').textContent = money(Math.round(data.afterDraw));
+
+  document.getElementById('commissionBreakdown').innerHTML = `
+    <div class="metric-list">
+      <div class="metric-item"><strong>Current Tier</strong><div class="small">Mini: ${money(data.tier.mini)} • Commission %: ${Math.round(data.tier.percent * 100)}%</div></div>
+      <div class="metric-item"><strong>Total Gross</strong><div class="small">${money(data.totalGross)}</div></div>
+      <div class="metric-item"><strong>Average Gross per Sold Deal</strong><div class="small">${money(Math.round(data.averageGross))}</div></div>
+      <div class="metric-item"><strong>Estimated Commission</strong><div class="small">${money(Math.round(data.totalCommission))} based on the better of mini or percentage, with $995 pack removed and $2,000 cap per deal</div></div>
+      <div class="metric-item"><strong>Draw</strong><div class="small">${money(data.draw)}</div></div>
+    </div>
+    ${data.soldDeals.length ? `
+    <div style="margin-top:16px;">
+      <table class="table">
+        <thead><tr><th>Customer</th><th>Gross</th><th>Est. Deal Pay</th><th>Survey</th></tr></thead>
+        <tbody>
+          ${data.soldDeals.map(lead => {
+            const gross = parseMoney(lead.gross);
+            const dealPay = Math.max(data.tier.mini, Math.min(2000, Math.max(0, gross - 995) * data.tier.percent));
+            return `<tr><td>${escapeHtml(lead.customerName || [lead.firstName,lead.lastName].filter(Boolean).join(' '))}</td><td>${money(gross)}</td><td>${money(Math.round(dealPay))}</td><td>${lead.googleReview === 'Yes' ? '$25' : '$0'}</td></tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>` : `<div class="empty">No sold deals yet, so commission cannot be estimated.</div>`}
+  `;
+
+  document.getElementById('surveyBreakdown').innerHTML = `
+    <div class="metric-list">
+      <div class="metric-item"><strong>Survey Count</strong><div class="small">${data.surveyCount} surveys marked in sold deals</div></div>
+      <div class="metric-item"><strong>Survey Money</strong><div class="small">${money(data.surveyMoney)} at $25 each</div></div>
+      <div class="metric-item"><strong>Net After Draw</strong><div class="small">${money(Math.round(data.afterDraw))}</div></div>
+    </div>`;
+}
+
+function renderAll(){ renderDashboard(); renderLeads(); renderTasks(); renderCommission(); }
 
 function normalizeLead(data){
   const fullName = (data.customerName || '').trim();
